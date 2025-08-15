@@ -291,21 +291,11 @@ export default function Contact() {
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="text-2xl mr-4">📱</div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
-                      <p className="text-gray-600">(555) 123-4567</p>
-                      <p className="text-gray-500 text-sm">Mon-Fri, 9AM-6PM PST</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
                     <div className="text-2xl mr-4">📍</div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">Office</h4>
+                      <h4 className="font-semibold text-gray-900 mb-1">Location</h4>
                       <p className="text-gray-600">
-                        123 Creator Boulevard<br />
-                        Los Angeles, CA 90210
+                        Raleigh, NC
                       </p>
                     </div>
                   </div>
