@@ -2,230 +2,192 @@ import Link from 'next/link'
 import SocialMediaEmbed from '@/components/SocialMediaEmbed'
 
 export default function Clients() {
-  const creators = [
+  // Featured creator - Plumb Hero
+  const featuredCreator = {
+    name: "Plumb Hero",
+    handle: "@plumb.hero",
+    followers: "1M+",
+    platforms: ["TikTok", "Instagram", "YouTube", "Facebook"],
+    category: "Plumbing & Trades",
+    description: "Expert plumber sharing professional tips, tool reviews, and behind-the-scenes trade content that educates and entertains both professionals and homeowners.",
+    image: "🔧",
+    totalViews: "50M+",
+    engagement: "8.5%",
+    demographics: "25-54 years, 65% male, blue-collar professionals"
+  }
+
+  // Featured video for "Most Recent Viral Hit" section
+  const featuredVideo = {
+    title: "Latest Viral Plumbing Tip",
+    videoId: "7498894934058061098", // Replace with actual featured video ID
+    views: "1.5M",
+    engagement: "22.1%",
+    description: "His most recent viral hit that's taking TikTok by storm"
+  }
+
+  // Plumb Hero's top 3 videos (you'll need to replace these with actual TikTok video IDs)
+  const topVideos = [
     {
       id: 1,
-      name: "Emma Rodriguez",
-      handle: "@emmalifestyle",
-      followers: "3.2M",
-      platforms: ["TikTok", "Instagram"],
-      category: "Lifestyle",
-      description: "Fashion and lifestyle content creator with authentic storytelling that resonates with Gen Z audiences.",
-      image: "🌟",
-      videoThumb: "https://example.com/emma-video-thumb.jpg",
-      embedData: {
-        platform: 'tiktok' as const,
-        videoId: '7123456789012345678'
-      }
+      title: "How to Replace Tub Spout. Easy",
+      videoId: "7445044110823525674", // Replace with actual video ID
+      views: "22.7M",
+      engagement: "15.2%",
+      description: "Educational content showing the #1 mistake that causes expensive plumbing repairs"
     },
     {
       id: 2,
-      name: "Marcus Chen",
-      handle: "@marcusfitness",
-      followers: "1.8M",
-      platforms: ["TikTok", "Instagram"],
-      category: "Fitness",
-      description: "Fitness coach and nutrition expert creating motivational content and workout tutorials.",
-      image: "💪",
-      videoThumb: "https://example.com/marcus-video-thumb.jpg",
-      embedData: {
-        platform: 'instagram' as const,
-        postUrl: 'https://www.instagram.com/p/ABC123DEF456/'
-      }
+      title: "Fixing a Main Back Up on a house",
+      videoId: "7374179038476209450", // Replace with actual video ID
+      views: "2.1M",
+      engagement: "12.8%",
+      description: "Customer complains about consistent drainage issues"
     },
     {
       id: 3,
-      name: "Sofia Beauty",
-      handle: "@sofiaglam",
-      followers: "2.7M",
-      platforms: ["Instagram", "TikTok"],
-      category: "Beauty",
-      description: "Beauty influencer specializing in makeup tutorials, skincare routines, and product reviews.",
-      image: "💄",
-      videoThumb: "https://example.com/sofia-video-thumb.jpg",
-      embedData: {
-        platform: 'tiktok' as const,
-        videoId: '7234567890123456789'
-      }
-    },
-    {
-      id: 4,
-      name: "Alex Travel",
-      handle: "@alexadventures",
-      followers: "1.5M",
-      platforms: ["TikTok", "Instagram"],
-      category: "Travel",
-      description: "Adventure traveler sharing hidden gems and budget-friendly travel tips worldwide.",
-      image: "✈️",
-      videoThumb: "https://example.com/alex-video-thumb.jpg",
-      embedData: {
-        platform: 'instagram' as const,
-        postUrl: 'https://www.instagram.com/p/DEF456GHI789/'
-      }
-    },
-    {
-      id: 5,
-      name: "Maya Foodie",
-      handle: "@mayaeats",
-      followers: "2.1M",
-      platforms: ["TikTok", "Instagram"],
-      category: "Food",
-      description: "Food content creator focusing on easy recipes, restaurant reviews, and cooking hacks.",
-      image: "🍜",
-      videoThumb: "https://example.com/maya-video-thumb.jpg",
-      embedData: {
-        platform: 'tiktok' as const,
-        videoId: '7345678901234567890'
-      }
-    },
-    {
-      id: 6,
-      name: "Tyler Tech",
-      handle: "@tylertechtalks",
-      followers: "950K",
-      platforms: ["TikTok", "Instagram"],
-      category: "Technology",
-      description: "Tech reviewer and digital lifestyle creator making technology accessible to everyone.",
-      image: "📱",
-      videoThumb: "https://example.com/tyler-video-thumb.jpg",
-      embedData: {
-        platform: 'tiktok' as const,
-        videoId: '7456789012345678901'
-      }
-    },
-    {
-      id: 7,
-      name: "Luna Art",
-      handle: "@lunaartistry",
-      followers: "1.3M",
-      platforms: ["Instagram", "TikTok"],
-      category: "Art",
-      description: "Digital artist and creative director sharing art tutorials and design inspiration.",
-      image: "🎨",
-      videoThumb: "https://example.com/luna-video-thumb.jpg",
-      embedData: {
-        platform: 'instagram' as const,
-        postUrl: 'https://www.instagram.com/p/GHI789JKL012/'
-      }
-    },
-    {
-      id: 8,
-      name: "Ryan Music",
-      handle: "@ryanbeats",
-      followers: "2.4M",
-      platforms: ["TikTok", "Instagram"],
-      category: "Music",
-      description: "Musician and producer creating original music content and behind-the-scenes content.",
-      image: "🎵",
-      videoThumb: "https://example.com/ryan-video-thumb.jpg",
-      embedData: {
-        platform: 'tiktok' as const,
-        videoId: '7567890123456789012'
-      }
+      title: "Main Water Line leak on PolyP pipe",
+      videoId: "7416496548118301998", // Replace with actual video ID
+      views: "4.3M",
+      engagement: "18.5%",
+      description: "Imagine your being featured on a popular TikTok channel that showcases your expertise and connects you with a wider audience."
     }
   ]
-
-  const categories = ["All", "Lifestyle", "Fitness", "Beauty", "Travel", "Food", "Technology", "Art", "Music"]
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-blue-50 to-white">
+      <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Our Creators
+            <h1 className="text-4xl md:text-6xl font-black text-forge-charcoal mb-6">
+              Our Featured Creator
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Meet the talented creators we're proud to represent across TikTok and Instagram.
+              Meet the authentic voice leading blue-collar content on social media.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Stats Overview */}
-      <section className="py-16 bg-gray-50">
+      {/* Plumb Hero Profile Section */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Creator Info */}
             <div>
-              <div className="text-3xl font-bold text-blue-600 mb-2">100+</div>
-              <div className="text-sm text-gray-600">Active Creators</div>
+              <div className="flex items-center mb-6">
+                <div className="flex items-center justify-center w-20 h-20 bg-forge-orange rounded-full mr-6">
+                  <span className="text-3xl font-bold text-white">PH</span>
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold text-forge-charcoal">{featuredCreator.name}</h2>
+                  <p className="text-xl text-forge-orange font-semibold">{featuredCreator.handle}</p>
+                </div>
+              </div>
+              
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                {featuredCreator.description}
+              </p>
+              
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 gap-6 mb-8">
+                <div className="bg-white p-4 rounded-lg border border-gray-200">
+                  <div className="text-2xl font-bold text-forge-orange mb-1">{featuredCreator.followers}</div>
+                  <div className="text-sm text-gray-600">Total Followers</div>
+                </div>
+                <div className="bg-white p-4 rounded-lg border border-gray-200">
+                  <div className="text-2xl font-bold text-forge-orange mb-1">{featuredCreator.totalViews}</div>
+                  <div className="text-sm text-gray-600">Total Views</div>
+                </div>
+                <div className="bg-white p-4 rounded-lg border border-gray-200">
+                  <div className="text-2xl font-bold text-forge-orange mb-1">{featuredCreator.engagement}</div>
+                  <div className="text-sm text-gray-600">Avg Engagement</div>
+                </div>
+                <div className="bg-white p-4 rounded-lg border border-gray-200">
+                  <div className="text-2xl font-bold text-forge-orange mb-1">3</div>
+                  <div className="text-sm text-gray-600">Platforms</div>
+                </div>
+              </div>
+              
+              {/* Platform badges */}
+              <div className="flex space-x-3 mb-8">
+                {featuredCreator.platforms.map((platform) => (
+                  <span
+                    key={platform}
+                    className="bg-forge-orange text-white px-4 py-2 rounded-full text-sm font-semibold"
+                  >
+                    {platform}
+                  </span>
+                ))}
+              </div>
+              
+              {/* Audience Demographics */}
+              <div className="bg-white p-6 rounded-lg border border-gray-200">
+                <h3 className="text-lg font-semibold text-forge-charcoal mb-3">Target Audience</h3>
+                <p className="text-gray-600">{featuredCreator.demographics}</p>
+              </div>
             </div>
+            
+            {/* Featured Video */}
             <div>
-              <div className="text-3xl font-bold text-blue-600 mb-2">50M+</div>
-              <div className="text-sm text-gray-600">Total Followers</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-blue-600 mb-2">500+</div>
-              <div className="text-sm text-gray-600">Brand Deals</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-blue-600 mb-2">10+</div>
-              <div className="text-sm text-gray-600">Categories</div>
+              <h3 className="text-2xl font-bold text-forge-charcoal mb-6">Most Recent Viral Hit</h3>
+              <div className="bg-white p-6 rounded-xl shadow-lg">
+                <SocialMediaEmbed
+                  platform="tiktok"
+                  videoId={featuredVideo.videoId}
+                  title={featuredVideo.title}
+                  creator={featuredCreator.handle}
+                  className="mb-4"
+                />
+                <h4 className="text-lg font-semibold text-forge-charcoal mb-2">{featuredVideo.title}</h4>
+                <p className="text-gray-600 mb-4">{featuredVideo.description}</p>
+                <div className="flex justify-between text-sm">
+                  <span className="text-forge-orange font-semibold">{featuredVideo.views} views</span>
+                  <span className="text-forge-orange font-semibold">{featuredVideo.engagement} engagement</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Filter Categories */}
-      <section className="py-8 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category) => (
-              <button
-                key={category}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
-                  category === "All"
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Creators Grid */}
+      {/* Top 3 Videos Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {creators.map((creator) => (
-              <div key={creator.id} className="group">
-                {/* Social Media Embed */}
-                <div className="mb-4">
-                  <SocialMediaEmbed
-                    platform={creator.embedData.platform}
-                    videoId={creator.embedData.platform === 'tiktok' ? creator.embedData.videoId : undefined}
-                    postUrl={creator.embedData.platform === 'instagram' ? creator.embedData.postUrl : undefined}
-                    thumbnail={creator.videoThumb}
-                    title={`${creator.name} - ${creator.category}`}
-                    creator={creator.handle}
-                    className="group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                
-                {/* Creator Info */}
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-1">{creator.name}</h3>
-                  <p className="text-blue-600 font-medium mb-2">{creator.handle}</p>
-                  <p className="text-gray-600 text-sm mb-3 leading-relaxed">{creator.description}</p>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-forge-charcoal mb-4">
+              Top Performing Content
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              These viral videos showcase the authentic expertise and engaging personality that drives results.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {topVideos.map((video, index) => (
+              <div key={video.id} className="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="bg-forge-orange text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      #{index + 1} Most Viewed
+                    </span>
+                    <span className="text-forge-orange font-semibold">{video.views}</span>
+                  </div>
                   
-                  {/* Platform badges */}
-                  <div className="flex space-x-2">
-                    {creator.platforms.map((platform) => (
-                      <span
-                        key={platform}
-                        className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          platform === "TikTok"
-                            ? "bg-pink-100 text-pink-800"
-                            : "bg-purple-100 text-purple-800"
-                        }`}
-                      >
-                        {platform}
-                      </span>
-                    ))}
+                  <SocialMediaEmbed
+                    platform="tiktok"
+                    videoId={video.videoId}
+                    title={video.title}
+                    creator={featuredCreator.handle}
+                    className="mb-4"
+                  />
+                  
+                  <h3 className="text-lg font-semibold text-forge-charcoal mb-2">{video.title}</h3>
+                  <p className="text-gray-600 text-sm mb-4">{video.description}</p>
+                  
+                  <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                    <span className="text-sm text-gray-500">Engagement Rate</span>
+                    <span className="text-forge-orange font-semibold">{video.engagement}</span>
                   </div>
                 </div>
               </div>
@@ -234,66 +196,90 @@ export default function Clients() {
         </div>
       </section>
 
-      {/* Featured Campaign Section */}
+      {/* Content Categories */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Recent Campaigns
+            <h2 className="text-3xl md:text-4xl font-bold text-forge-charcoal mb-4">
+              Content Categories
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              See how our creators are making impact with leading brands
+              Diverse content that resonates with blue-collar professionals and DIY enthusiasts.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              {
-                brand: "Nike",
-                creator: "Marcus Chen",
-                campaign: "Summer Fitness Challenge",
-                results: "2.5M views, 15% engagement rate"
-              },
-              {
-                brand: "Sephora",
-                creator: "Sofia Beauty",
-                campaign: "New Product Launch",
-                results: "1.8M views, 12% conversion rate"
-              },
-              {
-                brand: "Airbnb",
-                creator: "Alex Travel",
-                campaign: "Hidden Gems Series",
-                results: "3.1M views, 25% save rate"
-              }
-            ].map((campaign, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-sm">
-                <div className="text-2xl mb-4">🎯</div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{campaign.brand} × {campaign.creator}</h3>
-                <p className="text-gray-600 mb-3">{campaign.campaign}</p>
-                <p className="text-sm text-blue-600 font-medium">{campaign.results}</p>
+              { icon: "🔧", title: "Professional Tips", description: "Expert advice from 15+ years in the trade" },
+              { icon: "🛠️", title: "Tool Reviews", description: "Honest reviews of the latest plumbing tools" },
+              { icon: "🏠", title: "DIY Tutorials", description: "Step-by-step guides for homeowners" },
+              { icon: "⚡", title: "Emergency Fixes", description: "Quick solutions for urgent plumbing issues" }
+            ].map((category, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl text-center">
+                <div className="text-4xl mb-4">{category.icon}</div>
+                <h3 className="text-lg font-semibold text-forge-charcoal mb-2">{category.title}</h3>
+                <p className="text-gray-600 text-sm">{category.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Join Our Roster CTA */}
-      <section className="py-20 bg-blue-600">
+      {/* Brand Partnership Success */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-forge-charcoal mb-4">
+              Partnership Success
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Real results from authentic brand collaborations in the trades industry.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                metric: "95%",
+                description: "Brand recall rate among target audience",
+                icon: "🎯"
+              },
+              {
+                metric: "3.2x",
+                description: "Higher engagement than industry average",
+                icon: "📈"
+              },
+              {
+                metric: "78%",
+                description: "Audience trust in brand recommendations",
+                icon: "🤝"
+              }
+            ].map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-4xl mb-4">{stat.icon}</div>
+                <div className="text-4xl font-bold text-forge-orange mb-2">{stat.metric}</div>
+                <p className="text-gray-600">{stat.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-forge-orange">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Want to Join Our Roster?
+            Ready to Work with Authentic Trade Professionals?
           </h2>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-8">
-            We're always looking for talented creators who are passionate about their craft 
-            and ready to take their influence to the next level.
+          <p className="text-xl text-orange-100 max-w-2xl mx-auto mb-8">
+            Connect with creators who have real expertise and genuine relationships with blue-collar audiences.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-colors">
-              Apply to Join
+            <Link href="/contact" className="bg-white text-forge-orange px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-colors">
+              Start Your Campaign
             </Link>
-            <Link href="/services" className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-              Learn About Our Services
+            <Link href="https://www.tiktok.com/@plumb.hero" className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-forge-orange transition-colors">
+              View @plumb.hero
             </Link>
           </div>
         </div>

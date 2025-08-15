@@ -1,211 +1,232 @@
+'use client'
+
 import Link from 'next/link'
-import SocialMediaEmbed from '@/components/SocialMediaEmbed'
+import { useState } from 'react'
 
 export default function Home() {
+  const [activeView, setActiveView] = useState<'brands' | 'creators'>('brands')
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 to-white py-20 lg:py-32">
+      {/* Hero Section with Toggle */}
+      <section className="relative bg-white py-20 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Toggle Selector */}
+          <div className="flex justify-center mb-12">
+            <div className="bg-gray-100 rounded-lg p-1 inline-flex">
+              <button
+                onClick={() => setActiveView('brands')}
+                className={`px-6 py-3 rounded-md font-semibold transition-all duration-300 ${
+                  activeView === 'brands'
+                    ? 'bg-forge-orange text-white shadow-md'
+                    : 'text-forge-charcoal hover:text-forge-orange'
+                }`}
+              >
+                For Brands
+              </button>
+              <button
+                onClick={() => setActiveView('creators')}
+                className={`px-6 py-3 rounded-md font-semibold transition-all duration-300 ${
+                  activeView === 'creators'
+                    ? 'bg-forge-orange text-white shadow-md'
+                    : 'text-forge-charcoal hover:text-forge-orange'
+                }`}
+              >
+                For Creators
+              </button>
+            </div>
+          </div>
+
+          {/* Dynamic Content */}
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6">
-              Smart Creativity for
-              <span className="block text-blue-600">Inspired Influencers</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
-              Premier talent management for TikTok and Instagram creators. 
-              We connect brands with authentic voices and help influencers build lasting careers.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact" className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors">
-                Get Started
-              </Link>
-              <Link href="/clients" className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg text-lg font-semibold hover:border-gray-400 transition-colors">
-                View Our Work
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+            {activeView === 'brands' ? (
+              // For Brands View
+              <>
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-forge-charcoal mb-6">
+                  Connect with the Right Creator
+                  <span className="block text-forge-orange">for Your Brand</span>
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed">
+                  We help brands connect with authentic, high-impact creators.
+                </p>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-blue-600 mb-2">50M+</div>
-              <div className="text-lg text-gray-600">Combined Followers</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-blue-600 mb-2">100+</div>
-              <div className="text-lg text-gray-600">Active Creators</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-blue-600 mb-2">500+</div>
-              <div className="text-lg text-gray-600">Brand Partnerships</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Clients Preview */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Featured Creators
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Meet some of the talented creators we're proud to represent
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Featured creators with social media embeds */}
-            {[
-              {
-                id: 1,
-                name: "Emma Rodriguez",
-                handle: "@emmalifestyle",
-                followers: "3.2M",
-                platform: "tiktok" as const,
-                videoId: "7123456789012345678",
-                platforms: ["TikTok", "Instagram"]
-              },
-              {
-                id: 2,
-                name: "Marcus Chen", 
-                handle: "@marcusfitness",
-                followers: "1.8M",
-                platform: "instagram" as const,
-                postUrl: "https://www.instagram.com/p/ABC123DEF456/",
-                platforms: ["Instagram", "TikTok"]
-              },
-              {
-                id: 3,
-                name: "Sofia Beauty",
-                handle: "@sofiaglam", 
-                followers: "2.7M",
-                platform: "tiktok" as const,
-                videoId: "7234567890123456789",
-                platforms: ["TikTok", "Instagram"]
-              },
-              {
-                id: 4,
-                name: "Alex Travel",
-                handle: "@alexadventures",
-                followers: "1.5M", 
-                platform: "instagram" as const,
-                postUrl: "https://www.instagram.com/p/DEF456GHI789/",
-                platforms: ["Instagram", "TikTok"]
-              },
-              {
-                id: 5,
-                name: "Maya Foodie",
-                handle: "@mayaeats",
-                followers: "2.1M",
-                platform: "tiktok" as const, 
-                videoId: "7345678901234567890",
-                platforms: ["TikTok", "Instagram"]
-              },
-              {
-                id: 6,
-                name: "Ryan Music",
-                handle: "@ryanbeats",
-                followers: "2.4M",
-                platform: "tiktok" as const,
-                videoId: "7567890123456789012", 
-                platforms: ["TikTok", "Instagram"]
-              }
-            ].map((creator) => (
-              <div key={creator.id} className="group">
-                <div className="mb-4">
-                  <SocialMediaEmbed
-                    platform={creator.platform}
-                    videoId={creator.platform === 'tiktok' ? creator.videoId : undefined}
-                    postUrl={creator.platform === 'instagram' ? creator.postUrl : undefined}
-                    title={`${creator.name} content`}
-                    creator={creator.handle}
-                    className="group-hover:scale-105 transition-transform duration-300"
-                  />
+                {/* Featured Creator Card */}
+                <div className="max-w-2xl mx-auto mb-12 bg-white border border-gray-200 rounded-2xl p-8 shadow-lg">
+                  <div className="flex items-center justify-center w-24 h-24 bg-forge-orange rounded-full mx-auto mb-6">
+                    <span className="text-2xl font-bold text-white">TC</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-forge-charcoal mb-4">Featured Creator</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-forge-orange mb-1">1M+</div>
+                      <div className="text-sm text-gray-600">Total Followers</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-forge-orange mb-1">50M+</div>
+                      <div className="text-sm text-gray-600">Video Views</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-forge-orange mb-1">3</div>
+                      <div className="text-sm text-gray-600">Platforms</div>
+                    </div>
+                  </div>
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <div className="font-semibold text-forge-charcoal mb-2">Focus Areas:</div>
+                    <div className="flex flex-wrap gap-2 justify-center">
+                      <span className="bg-forge-orange text-white px-3 py-1 rounded-full text-sm font-medium">Trades</span>
+                      <span className="bg-forge-orange text-white px-3 py-1 rounded-full text-sm font-medium">Tools</span>
+                      <span className="bg-forge-orange text-white px-3 py-1 rounded-full text-sm font-medium">Blue-Collar Industry</span>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">{creator.name}</h3>
-                <p className="text-gray-600">{creator.handle} • {creator.followers} followers</p>
-                <div className="flex space-x-2 mt-2">
-                  {creator.platforms.map((platform) => (
-                    <span
-                      key={platform}
-                      className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        platform === "TikTok"
-                          ? "bg-pink-100 text-pink-800"
-                          : "bg-purple-100 text-purple-800"
-                      }`}
-                    >
-                      {platform}
-                    </span>
-                  ))}
+
+                {/* Future Creators Placeholder */}
+                <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-8 mb-12">
+                  <div className="text-gray-500 text-lg font-medium">More amazing creators coming soon...</div>
                 </div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="text-center mt-12">
-            <Link href="/clients" className="bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
-              View All Creators
-            </Link>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link href="/contact" className="bg-forge-orange text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-forge-orange-dark transition-colors">
+                    Start Your Campaign
+                  </Link>
+                  <Link href="/clients" className="border-2 border-forge-orange text-forge-orange px-8 py-4 rounded-lg text-lg font-semibold hover:bg-forge-orange hover:text-white transition-colors">
+                    View Portfolio
+                  </Link>
+                </div>
+              </>
+            ) : (
+              // For Creators View
+              <>
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-forge-charcoal mb-6">
+                  Forge Stronger
+                  <span className="block text-forge-orange">Brand Partnerships</span>
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed">
+                  We negotiate, manage, and grow your brand deals so you can focus on creating.
+                </p>
+
+                {/* Services Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                  <div className="bg-white border border-gray-200 rounded-xl p-6">
+                    <div className="text-4xl mb-4">🤝</div>
+                    <h3 className="text-xl font-bold text-forge-charcoal mb-3">Deal Negotiation & Contract Management</h3>
+                    <p className="text-gray-600">We handle the business side so you get fair deals and clear terms.</p>
+                  </div>
+                  <div className="bg-white border border-gray-200 rounded-xl p-6">
+                    <div className="text-4xl mb-4">🎯</div>
+                    <h3 className="text-xl font-bold text-forge-charcoal mb-3">Brand Matchmaking</h3>
+                    <p className="text-gray-600">Connect with brands that align with your content and audience.</p>
+                  </div>
+                  <div className="bg-white border border-gray-200 rounded-xl p-6">
+                    <div className="text-4xl mb-4">📊</div>
+                    <h3 className="text-xl font-bold text-forge-charcoal mb-3">Content Performance Tracking</h3>
+                    <p className="text-gray-600">Data-driven insights to optimize your content and partnerships.</p>
+                  </div>
+                </div>
+
+                {/* Brand Logos Placeholder */}
+                <div className="mb-12">
+                  <h3 className="text-2xl font-bold text-forge-charcoal mb-6">Brands in Our Target Niche</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    {[1, 2, 3, 4].map((i) => (
+                      <div key={i} className="bg-gray-100 rounded-lg h-20 flex items-center justify-center border border-gray-200">
+                        <span className="text-gray-400 font-medium">Brand Logo {i}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link href="/contact" className="bg-forge-orange text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-forge-orange-dark transition-colors">
+                    Apply for Representation
+                  </Link>
+                  <Link href="/services" className="border-2 border-forge-orange text-forge-orange px-8 py-4 rounded-lg text-lg font-semibold hover:bg-forge-orange hover:text-white transition-colors">
+                    Learn More
+                  </Link>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>
 
-      {/* Services Preview */}
+      {/* Why Choose Forge Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              What We Do
+            <h2 className="text-3xl md:text-4xl font-bold text-forge-charcoal mb-4">
+              Why Choose Forge?
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Comprehensive talent management services for the digital age
+              {activeView === 'brands' 
+                ? 'We connect you with authentic creators who drive real results'
+                : 'We handle the business so you can focus on what you do best'
+              }
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
-              <div className="text-5xl mb-4">📱</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Brand Partnerships</h3>
-              <p className="text-gray-600">Connect with top brands that align with your audience and values</p>
-            </div>
-            <div className="text-center p-6">
-              <div className="text-5xl mb-4">📈</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Growth Strategy</h3>
-              <p className="text-gray-600">Data-driven strategies to grow your following and engagement</p>
-            </div>
-            <div className="text-center p-6">
-              <div className="text-5xl mb-4">🎯</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Content Creation</h3>
-              <p className="text-gray-600">Creative support and resources to elevate your content</p>
-            </div>
-          </div>
-          
-          <div className="text-center mt-12">
-            <Link href="/services" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-              Learn More
-            </Link>
+            {activeView === 'brands' ? (
+              <>
+                <div className="text-center p-6">
+                  <div className="text-5xl mb-4">🎯</div>
+                  <h3 className="text-xl font-semibold text-forge-charcoal mb-3">Authentic Reach</h3>
+                  <p className="text-gray-600">Our creators have genuine engagement with audiences that trust their recommendations</p>
+                </div>
+                <div className="text-center p-6">
+                  <div className="text-5xl mb-4">📊</div>
+                  <h3 className="text-xl font-semibold text-forge-charcoal mb-3">Proven Results</h3>
+                  <p className="text-gray-600">Track record of successful campaigns with measurable ROI</p>
+                </div>
+                <div className="text-center p-6">
+                  <div className="text-5xl mb-4">🤝</div>
+                  <h3 className="text-xl font-semibold text-forge-charcoal mb-3">Full Service</h3>
+                  <p className="text-gray-600">From strategy to execution, we handle every aspect of your creator partnerships</p>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="text-center p-6">
+                  <div className="text-5xl mb-4">💰</div>
+                  <h3 className="text-xl font-semibold text-forge-charcoal mb-3">Better Deals</h3>
+                  <p className="text-gray-600">We negotiate higher rates and better terms than you could get on your own</p>
+                </div>
+                <div className="text-center p-6">
+                  <div className="text-5xl mb-4">⏰</div>
+                  <h3 className="text-xl font-semibold text-forge-charcoal mb-3">Save Time</h3>
+                  <p className="text-gray-600">No more back-and-forth emails or contract headaches</p>
+                </div>
+                <div className="text-center p-6">
+                  <div className="text-5xl mb-4">📈</div>
+                  <h3 className="text-xl font-semibold text-forge-charcoal mb-3">Grow Faster</h3>
+                  <p className="text-gray-600">Focus on creating while we handle the business side of your career</p>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600">
+      <section className="py-20 bg-forge-orange">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Take Your Influence to the Next Level?
+            {activeView === 'brands' 
+              ? 'Ready to Launch Your Next Campaign?'
+              : 'Ready to Level Up Your Creator Career?'
+            }
           </h2>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-8">
-            Join our community of successful creators and start building your empire today.
+          <p className="text-xl text-orange-100 max-w-2xl mx-auto mb-8">
+            {activeView === 'brands'
+              ? 'Connect with creators who can authentically represent your brand and drive real results.'
+              : 'Join our roster and let us handle the business while you focus on creating amazing content.'
+            }
           </p>
-          <Link href="/contact" className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-colors">
-            Apply Now
+          <Link 
+            href="/contact" 
+            className="bg-white text-forge-orange px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-colors"
+          >
+            {activeView === 'brands' ? 'Get Started Today' : 'Apply Now'}
           </Link>
         </div>
       </section>
