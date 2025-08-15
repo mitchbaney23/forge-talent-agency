@@ -87,10 +87,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Future Creators Placeholder */}
-                <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl p-8 mb-12">
-                  <div className="text-gray-500 text-lg font-medium">More amazing creators coming soon...</div>
-                </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link href="/contact" className="bg-forge-orange text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-forge-orange-dark transition-colors">
@@ -131,17 +127,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Brand Logos Placeholder */}
-                <div className="mb-12">
-                  <h3 className="text-2xl font-bold text-forge-charcoal mb-6">Brands in Our Target Niche</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className="bg-gray-100 rounded-lg h-20 flex items-center justify-center border border-gray-200">
-                        <span className="text-gray-400 font-medium">Brand Logo {i}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link href="/contact" className="bg-forge-orange text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-forge-orange-dark transition-colors">
