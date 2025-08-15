@@ -35,9 +35,6 @@ export default function Navigation() {
             <Link href="/clients" className="text-forge-charcoal hover:text-forge-orange px-3 py-2 text-sm font-semibold transition-colors">
               Clients
             </Link>
-            <Link href="/testimonials" className="text-forge-charcoal hover:text-forge-orange px-3 py-2 text-sm font-semibold transition-colors">
-              Testimonials
-            </Link>
             <Link href="/contact" className="bg-forge-orange text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-forge-orange-dark transition-colors">
               Contact
             </Link>
@@ -72,9 +69,6 @@ export default function Navigation() {
               </Link>
               <Link href="/clients" className="block text-forge-charcoal hover:text-forge-orange px-3 py-2 text-base font-semibold transition-colors">
                 Clients
-              </Link>
-              <Link href="/testimonials" className="block text-forge-charcoal hover:text-forge-orange px-3 py-2 text-base font-semibold transition-colors">
-                Testimonials
               </Link>
               <Link href="/contact" className="block bg-forge-orange text-white px-3 py-2 rounded-md text-base font-semibold hover:bg-forge-orange-dark transition-colors">
                 Contact

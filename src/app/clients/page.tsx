@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import SocialMediaEmbed from '@/components/SocialMediaEmbed'
 
 export default function Clients() {
@@ -76,8 +77,14 @@ export default function Clients() {
             {/* Creator Info */}
             <div>
               <div className="flex items-center mb-6">
-                <div className="flex items-center justify-center w-20 h-20 bg-forge-orange rounded-full mr-6">
-                  <span className="text-3xl font-bold text-white">PH</span>
+                <div className="w-20 h-20 rounded-full mr-6 overflow-hidden ring-4 ring-forge-orange">
+                  <Image
+                    src="/assets/images/plumb-hero-profile.jpg"
+                    alt="Plumb Hero Profile Picture"
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
                   <h2 className="text-3xl font-bold text-forge-charcoal">{featuredCreator.name}</h2>

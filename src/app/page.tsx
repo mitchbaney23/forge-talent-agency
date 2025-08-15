@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 
 export default function Home() {
@@ -52,8 +53,14 @@ export default function Home() {
 
                 {/* Featured Creator Card */}
                 <div className="max-w-2xl mx-auto mb-12 bg-white border border-gray-200 rounded-2xl p-8 shadow-lg">
-                  <div className="flex items-center justify-center w-24 h-24 bg-forge-orange rounded-full mx-auto mb-6">
-                    <span className="text-2xl font-bold text-white">TC</span>
+                  <div className="w-24 h-24 rounded-full mx-auto mb-6 overflow-hidden ring-4 ring-forge-orange">
+                    <Image
+                      src="/assets/images/plumb-hero-profile.jpg"
+                      alt="Plumb Hero Profile Picture"
+                      width={96}
+                      height={96}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <h3 className="text-2xl font-bold text-forge-charcoal mb-4">Featured Creator</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
