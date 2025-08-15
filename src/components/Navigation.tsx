@@ -10,15 +10,15 @@ export default function Navigation() {
   return (
     <nav className="bg-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-24">
+        <div className="flex justify-between h-32">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
               <Image
                 src="/assets/logos/forge-logo.png"
                 alt="Forge Talent Agency"
-                width={250}
-                height={75}
-                className="h-20 w-auto"
+                width={500}
+                height={150}
+                className="h-28 w-auto"
                 priority
               />
             </Link>
