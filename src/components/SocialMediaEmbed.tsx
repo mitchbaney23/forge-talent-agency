@@ -1,19 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
-import dynamic from 'next/dynamic'
-import Image from 'next/image'
-
-// Lazy load embed components for better performance
-const TikTokEmbed = dynamic(() => import('./TikTokEmbed'), {
-  loading: () => <div className="animate-pulse bg-gray-200 aspect-[9/16] rounded-lg" />,
-  ssr: false
-})
-
-const InstagramEmbed = dynamic(() => import('./InstagramEmbed'), {
-  loading: () => <div className="animate-pulse bg-gray-200 aspect-[9/16] rounded-lg" />,
-  ssr: false
-})
+import Link from 'next/link'
 
 interface SocialMediaEmbedProps {
   platform: 'tiktok' | 'instagram'
@@ -34,84 +21,57 @@ export default function SocialMediaEmbed({
   creator,
   className = ''
 }: SocialMediaEmbedProps) {
-  const [showEmbed, setShowEmbed] = useState(false)
-  const [error] = useState(false)
-  const [inView, setInView] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries
-        if (entry.isIntersecting) {
-          setInView(true)
-          observer.disconnect()
-        }
-      },
-      { rootMargin: '50px' }
-    )
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current)
+  // Create the appropriate URL based on platform
+  const getUrl = () => {
+    if (platform === 'tiktok' && videoId) {
+      return `https://www.tiktok.com/@plumb.hero/video/${videoId}`
     }
-
-    return () => observer.disconnect()
-  }, [])
-
-  const handleLoadEmbed = () => {
-    setShowEmbed(true)
+    if (platform === 'instagram' && postUrl) {
+      return postUrl
+    }
+    return '#'
   }
 
-  if (!inView) {
-    return (
-      <div 
-        ref={containerRef}
-        className={`relative aspect-[9/16] bg-gray-100 rounded-lg flex items-center justify-center ${className}`}
+  const url = getUrl()
+
+  return (
+    <div className={`aspect-[9/16] bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden ${className}`}>
+      <Link 
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block w-full h-full relative group"
       >
-        <div className="animate-pulse bg-gray-200 w-full h-full rounded-lg" />
-      </div>
-    )
-  }
-
-  if (error) {
-    return (
-      <div className={`relative aspect-[9/16] bg-gray-100 rounded-lg flex items-center justify-center ${className}`}>
-        <div className="text-center p-4">
-          <div className="text-4xl mb-2">⚠️</div>
-          <p className="text-gray-600 text-sm">Unable to load {platform} content</p>
-        </div>
-      </div>
-    )
-  }
-
-  if (!showEmbed) {
-    return (
-      <div 
-        className={`relative aspect-[9/16] bg-gray-100 rounded-lg overflow-hidden cursor-pointer group ${className}`}
-        onClick={handleLoadEmbed}
-      >
-        {thumbnail ? (
-          <Image 
-            src={thumbnail} 
-            alt={title || `${platform} content`}
-            fill
-            className="object-cover"
-          />
-        ) : (
-          <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-4xl mb-2">
-                {platform === 'tiktok' ? '🎵' : '📷'}
-              </div>
-              <p className="text-gray-600 font-medium">
-                {platform === 'tiktok' ? 'TikTok Video' : 'Instagram Post'}
-              </p>
-            </div>
+        {/* Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-pink-100 to-blue-100" />
+        
+        {/* Content */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
+          {/* Platform icon */}
+          <div className="text-6xl mb-4">
+            {platform === 'tiktok' ? '🎵' : '📷'}
           </div>
-        )}
+          
+          {/* Title */}
+          {title && (
+            <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
+              {title}
+            </h3>
+          )}
+          
+          {/* Creator handle */}
+          <p className="text-forge-orange font-semibold mb-4">
+            {platform === 'tiktok' ? '@plumb.hero' : creator || '@plumb.hero'}
+          </p>
+          
+          {/* Watch button */}
+          <div className="bg-black text-white px-6 py-3 rounded-full text-sm font-semibold group-hover:bg-gray-800 transition-colors">
+            Watch on {platform === 'tiktok' ? 'TikTok' : 'Instagram'}
+          </div>
+        </div>
         
         {/* Play button overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center group-hover:bg-opacity-30 transition-opacity">
+        <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
             <svg className="w-6 h-6 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
               <path d="M8 5v14l11-7z"/>
@@ -120,31 +80,10 @@ export default function SocialMediaEmbed({
         </div>
         
         {/* Platform badge */}
-        <div className="absolute top-3 left-3 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-xs font-medium capitalize">
+        <div className="absolute top-3 left-3 bg-black text-white px-3 py-1 rounded-full text-xs font-bold capitalize">
           {platform}
         </div>
-        
-        {/* Creator info */}
-        {creator && (
-          <div className="absolute bottom-3 left-3 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-xs">
-            {creator}
-          </div>
-        )}
-      </div>
-    )
-  }
-
-  return (
-    <div className={`relative ${className}`}>
-      {platform === 'tiktok' && videoId ? (
-        <TikTokEmbed videoId={videoId} username="plumb.hero" title={title} />
-      ) : platform === 'instagram' && postUrl ? (
-        <InstagramEmbed postUrl={postUrl} />
-      ) : (
-        <div className="aspect-[9/16] bg-gray-100 rounded-lg flex items-center justify-center">
-          <p className="text-gray-600">Invalid embed configuration</p>
-        </div>
-      )}
+      </Link>
     </div>
   )
 }
