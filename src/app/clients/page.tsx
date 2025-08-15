@@ -79,7 +79,7 @@ export default function Clients() {
               <div className="flex items-center mb-6">
                 <div className="w-20 h-20 rounded-full mr-6 overflow-hidden ring-4 ring-forge-orange">
                   <Image
-                    src="/assets/images/plumb-hero-profile.jpg"
+                    src="/assets/images/plumbhero.jpeg"
                     alt="Plumb Hero Profile Picture"
                     width={80}
                     height={80}

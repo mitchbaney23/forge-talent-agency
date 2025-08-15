@@ -55,7 +55,7 @@ export default function Home() {
                 <div className="max-w-2xl mx-auto mb-12 bg-white border border-gray-200 rounded-2xl p-8 shadow-lg">
                   <div className="w-24 h-24 rounded-full mx-auto mb-6 overflow-hidden ring-4 ring-forge-orange">
                     <Image
-                      src="/assets/images/plumb-hero-profile.jpg"
+                      src="/assets/images/plumbhero.jpeg"
                       alt="Plumb Hero Profile Picture"
                       width={96}
                       height={96}
