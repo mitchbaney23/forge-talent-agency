@@ -64,7 +64,7 @@ export default function Clients() {
               Our Featured Creator
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Meet the authentic voice leading blue-collar content on social media.
+              Meet an authentic voice helping to lead blue-collar content on social media
             </p>
           </div>
         </div>

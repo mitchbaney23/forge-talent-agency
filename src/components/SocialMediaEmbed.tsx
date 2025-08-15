@@ -137,7 +137,7 @@ export default function SocialMediaEmbed({
   return (
     <div className={`relative ${className}`}>
       {platform === 'tiktok' && videoId ? (
-        <TikTokEmbed videoId={videoId} />
+        <TikTokEmbed videoId={videoId} username="plumb.hero" title={title} />
       ) : platform === 'instagram' && postUrl ? (
         <InstagramEmbed postUrl={postUrl} />
       ) : (
