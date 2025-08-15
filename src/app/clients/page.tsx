@@ -176,7 +176,7 @@ export default function Clients() {
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <span className="bg-forge-orange text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      #{index + 1} Most Viewed
+                      View Count
                     </span>
                     <span className="text-forge-orange font-semibold">{video.views}</span>
                   </div>
@@ -203,74 +203,6 @@ export default function Clients() {
         </div>
       </section>
 
-      {/* Content Categories */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-forge-charcoal mb-4">
-              Content Categories
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Diverse content that resonates with blue-collar professionals and DIY enthusiasts.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: "🔧", title: "Professional Tips", description: "Expert advice from 15+ years in the trade" },
-              { icon: "🛠️", title: "Tool Reviews", description: "Honest reviews of the latest plumbing tools" },
-              { icon: "🏠", title: "DIY Tutorials", description: "Step-by-step guides for homeowners" },
-              { icon: "⚡", title: "Emergency Fixes", description: "Quick solutions for urgent plumbing issues" }
-            ].map((category, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl text-center">
-                <div className="text-4xl mb-4">{category.icon}</div>
-                <h3 className="text-lg font-semibold text-forge-charcoal mb-2">{category.title}</h3>
-                <p className="text-gray-600 text-sm">{category.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Brand Partnership Success */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-forge-charcoal mb-4">
-              Partnership Success
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Real results from authentic brand collaborations in the trades industry.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                metric: "95%",
-                description: "Brand recall rate among target audience",
-                icon: "🎯"
-              },
-              {
-                metric: "3.2x",
-                description: "Higher engagement than industry average",
-                icon: "📈"
-              },
-              {
-                metric: "78%",
-                description: "Audience trust in brand recommendations",
-                icon: "🤝"
-              }
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl mb-4">{stat.icon}</div>
-                <div className="text-4xl font-bold text-forge-orange mb-2">{stat.metric}</div>
-                <p className="text-gray-600">{stat.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-forge-orange">
