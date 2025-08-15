@@ -4,6 +4,15 @@ import { useEffect, useState } from 'react'
 import Script from 'next/script'
 import Link from 'next/link'
 
+// Extend the Window interface to include TikTok embed functionality
+declare global {
+  interface Window {
+    tiktokEmbed?: {
+      load: () => void;
+    };
+  }
+}
+
 interface TikTokEmbedProps {
   videoId: string;
   username?: string;
@@ -32,8 +41,8 @@ export default function TikTokEmbed({ videoId, username = 'plumb.hero', title, c
   
   useEffect(() => {
     // Trigger TikTok embed script to process new embeds
-    if (typeof window !== 'undefined' && (window as any).tiktokEmbed) {
-      (window as any).tiktokEmbed.load()
+    if (typeof window !== 'undefined' && window.tiktokEmbed) {
+      window.tiktokEmbed.load()
     }
   }, [videoId])
 
@@ -97,8 +106,8 @@ export default function TikTokEmbed({ videoId, username = 'plumb.hero', title, c
         onLoad={() => {
           setScriptLoaded(true)
           // Initialize TikTok embeds when script loads
-          if ((window as any).tiktokEmbed) {
-            (window as any).tiktokEmbed.load()
+          if (window.tiktokEmbed) {
+            window.tiktokEmbed.load()
           }
         }}
       />
