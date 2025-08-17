@@ -41,9 +41,8 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
             <div className="space-y-2 text-gray-300">
-              <p>📧 hello@forgetalentagency.com</p>
-              <p>📱 (555) 123-4567</p>
-              <p>📍 Los Angeles, CA</p>
+              <p>📧 mitch@forgetalentagency.com</p>
+              <p>📍 Raleigh, NC</p>
             </div>
           </div>
         </div>
