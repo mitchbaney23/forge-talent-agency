@@ -9,12 +9,23 @@ module.exports = {
     extend: {
       colors: {
         'forge-orange': '#D35400',
-        'forge-orange-dark': '#A04000',
+        'forge-orange-dark': '#B84300',
         'forge-orange-light': '#E67E22',
         'forge-charcoal': '#1E1E1E',
+        'text-gray': '#333333',
       },
       fontFamily: {
-        'sans': ['Inter', 'system-ui', 'sans-serif'],
+        'sans': ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+        'heading': ['var(--font-montserrat)', 'Montserrat', 'system-ui', 'sans-serif'],
+        'montserrat': ['var(--font-montserrat)', 'Montserrat', 'system-ui', 'sans-serif'],
+      },
+      letterSpacing: {
+        'heading-tight': '-0.5px',
+        'button': '0.5px',
+      },
+      lineHeight: {
+        'heading': '1.1',
+        'body': '1.5',
       },
     },
   },

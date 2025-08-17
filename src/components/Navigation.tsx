@@ -26,16 +26,16 @@ export default function Navigation() {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-forge-charcoal hover:text-forge-orange px-3 py-2 text-sm font-semibold transition-colors">
+            <Link href="/" className="text-forge-charcoal hover:text-forge-orange px-3 py-2 text-sm font-montserrat font-semibold uppercase tracking-button transition-colors">
               Home
             </Link>
-            <Link href="/about" className="text-forge-charcoal hover:text-forge-orange px-3 py-2 text-sm font-semibold transition-colors">
+            <Link href="/about" className="text-forge-charcoal hover:text-forge-orange px-3 py-2 text-sm font-montserrat font-semibold uppercase tracking-button transition-colors">
               About
             </Link>
-            <Link href="/clients" className="text-forge-charcoal hover:text-forge-orange px-3 py-2 text-sm font-semibold transition-colors">
+            <Link href="/clients" className="text-forge-charcoal hover:text-forge-orange px-3 py-2 text-sm font-montserrat font-semibold uppercase tracking-button transition-colors">
               Clients
             </Link>
-            <Link href="/contact" className="bg-forge-orange text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-forge-orange-dark transition-colors">
+            <Link href="/contact" className="bg-forge-orange text-white px-4 py-2 rounded-md text-sm font-montserrat font-semibold uppercase tracking-button hover:bg-forge-orange-dark transition-colors">
               Contact
             </Link>
           </div>
@@ -61,16 +61,16 @@ export default function Navigation() {
         {isOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <Link href="/" className="block text-forge-charcoal hover:text-forge-orange px-3 py-2 text-base font-semibold transition-colors">
+              <Link href="/" className="block text-forge-charcoal hover:text-forge-orange px-3 py-2 text-base font-montserrat font-semibold uppercase tracking-button transition-colors">
                 Home
               </Link>
-              <Link href="/about" className="block text-forge-charcoal hover:text-forge-orange px-3 py-2 text-base font-semibold transition-colors">
+              <Link href="/about" className="block text-forge-charcoal hover:text-forge-orange px-3 py-2 text-base font-montserrat font-semibold uppercase tracking-button transition-colors">
                 About
               </Link>
-              <Link href="/clients" className="block text-forge-charcoal hover:text-forge-orange px-3 py-2 text-base font-semibold transition-colors">
+              <Link href="/clients" className="block text-forge-charcoal hover:text-forge-orange px-3 py-2 text-base font-montserrat font-semibold uppercase tracking-button transition-colors">
                 Clients
               </Link>
-              <Link href="/contact" className="block bg-forge-orange text-white px-3 py-2 rounded-md text-base font-semibold hover:bg-forge-orange-dark transition-colors">
+              <Link href="/contact" className="block bg-forge-orange text-white px-3 py-2 rounded-md text-base font-montserrat font-semibold uppercase tracking-button hover:bg-forge-orange-dark transition-colors">
                 Contact
               </Link>
             </div>

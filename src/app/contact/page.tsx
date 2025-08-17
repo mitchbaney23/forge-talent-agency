@@ -17,11 +17,52 @@ export default function Contact() {
     message: ''
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', { type: formType, data: formData })
-    alert('Thank you for your inquiry! We\'ll get back to you within 24 hours.')
+    
+    console.log('Form submission started', { type: formType, data: formData })
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: formType,
+          data: formData
+        })
+      })
+
+      console.log('Response received:', response.status, response.statusText)
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
+      const result = await response.json()
+
+      if (result.success) {
+        alert('Thank you for your inquiry! We will get back to you within 24 hours.')
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          handle: '',
+          followers: '',
+          platform: '',
+          category: '',
+          budget: '',
+          message: ''
+        })
+      } else {
+        alert('There was an error sending your message. Please try again or email us directly at mitch@forgetalentagency.com')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      alert('There was an error sending your message. Please try again or email us directly at mitch@forgetalentagency.com')
+    }
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -37,10 +78,10 @@ export default function Contact() {
       <section className="py-20 lg:py-32 bg-gradient-to-br from-blue-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Let's Connect
+            <h1 className="text-4xl md:text-6xl font-heading font-extrabold uppercase tracking-heading-tight leading-heading text-forge-charcoal mb-6">
+              Let's <span className="text-forge-orange">Connect</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-text-gray font-sans font-normal leading-body max-w-3xl mx-auto">
               Ready to take your influence to the next level? We&apos;d love to hear from you.
             </p>
           </div>
@@ -55,8 +96,8 @@ export default function Contact() {
             {/* Contact Form */}
             <div>
               <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
-                <p className="text-gray-600">
+                <h2 className="text-3xl font-heading font-extrabold uppercase tracking-heading-tight leading-heading text-forge-charcoal mb-4">Get in <span className="text-forge-orange">Touch</span></h2>
+                <p className="text-text-gray font-sans font-normal leading-body">
                   Whether you're a creator looking for representation or a brand seeking partnerships, 
                   we're here to help you succeed.
                 </p>
@@ -268,7 +309,7 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors"
+                  className="w-full bg-forge-orange text-white py-4 px-6 rounded-lg text-lg font-montserrat font-semibold uppercase tracking-button hover:bg-forge-orange-dark transition-colors"
                 >
                   Send Message
                 </button>
@@ -278,23 +319,23 @@ export default function Contact() {
             {/* Contact Information */}
             <div>
               <div className="bg-gray-50 rounded-2xl p-8 h-fit">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                <h3 className="text-2xl font-heading font-semibold text-forge-charcoal mb-6">Contact Information</h3>
                 
                 <div className="space-y-6">
                   <div className="flex items-start">
                     <div className="text-2xl mr-4">📧</div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
-                      <p className="text-gray-600">hello@forgetalentagency.com</p>
-                      <p className="text-gray-500 text-sm">We respond within 24 hours</p>
+                      <h4 className="font-heading font-semibold text-forge-charcoal mb-1">Email</h4>
+                      <p className="text-text-gray font-sans font-normal">mitch@forgetalentagency.com</p>
+                      <p className="text-text-gray font-sans font-normal text-sm">We respond within 24 hours</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
                     <div className="text-2xl mr-4">📍</div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">Location</h4>
-                      <p className="text-gray-600">
+                      <h4 className="font-heading font-semibold text-forge-charcoal mb-1">Location</h4>
+                      <p className="text-text-gray font-sans font-normal">
                         Raleigh, NC
                       </p>
                     </div>
@@ -353,7 +394,7 @@ export default function Contact() {
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <h3 className="font-semibold text-gray-900 mb-2">How do I apply to become a Forge creator?</h3>
                 <p className="text-gray-600 text-sm">
-                  Fill out our creator application form above or email us at hello@forgetalentagency.com 
+                  Fill out our creator application form above or email us at mitch@forgetalentagency.com 
                   with your media kit and social media handles. We review all applications within 48 hours.
                 </p>
               </div>
@@ -405,20 +446,20 @@ export default function Contact() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600">
+      <section className="py-20 bg-forge-orange">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Start Your Journey?
+          <h2 className="text-3xl md:text-4xl font-heading font-extrabold uppercase tracking-heading-tight leading-heading text-white mb-4">
+            Ready to Start Your <span className="text-forge-charcoal">Journey?</span>
           </h2>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-8">
+          <p className="text-xl text-orange-100 font-sans font-normal leading-body max-w-2xl mx-auto mb-8">
             Don't wait – the best opportunities are for those who act fast. 
             Let's build something amazing together.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/services" className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-colors">
+            <Link href="/services" className="bg-white text-forge-orange px-8 py-4 rounded-lg text-lg font-montserrat font-semibold uppercase tracking-button hover:bg-gray-50 transition-colors">
               Learn More About Our Services
             </Link>
-            <Link href="/clients" className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+            <Link href="/clients" className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-montserrat font-semibold uppercase tracking-button hover:bg-white hover:text-forge-orange transition-colors">
               See Our Success Stories
             </Link>
           </div>

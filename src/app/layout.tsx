@@ -1,10 +1,20 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Montserrat } from 'next/font/google'
 import './globals.css'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ 
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  variable: '--font-inter',
+})
+
+const montserrat = Montserrat({ 
+  subsets: ['latin'],
+  weight: ['600', '800'],
+  variable: '--font-montserrat',
+})
 
 export const metadata: Metadata = {
   title: 'Forge Talent Agency - Premier TikTok & Instagram Talent Management',
@@ -56,7 +66,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${montserrat.variable} font-sans`}>
         <Navigation />
         <main>{children}</main>
         <Footer />
