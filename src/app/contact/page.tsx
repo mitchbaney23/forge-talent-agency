@@ -346,9 +346,9 @@ export default function Contact() {
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Social Media</h4>
                       <div className="flex space-x-3 mt-2">
-                        <a href="#" className="text-blue-600 hover:text-blue-700">Instagram</a>
-                        <a href="#" className="text-blue-600 hover:text-blue-700">TikTok</a>
-                        <a href="#" className="text-blue-600 hover:text-blue-700">LinkedIn</a>
+                        <a href="https://www.instagram.com/forge.talent.agency?igsh=MTg3MmMzeHo0cnl0Mg%3D%3D&utm_source=qr" className="text-blue-600 hover:text-blue-700">Instagram</a>
+                        <a href="https://www.tiktok.com/@forge.talent" className="text-blue-600 hover:text-blue-700">TikTok</a>
+                        <a href="https://linkedin.com/company/forge-talent-agency" className="text-blue-600 hover:text-blue-700">LinkedIn</a>
                       </div>
                     </div>
                   </div>

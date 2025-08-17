@@ -217,8 +217,8 @@ export default function Clients() {
             <Link href="/contact" className="bg-white text-forge-orange px-8 py-4 rounded-lg text-lg font-montserrat font-semibold uppercase tracking-button hover:bg-gray-50 transition-colors">
               Start Your Campaign
             </Link>
-            <Link href="https://www.tiktok.com/@plumb.hero" className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-montserrat font-semibold uppercase tracking-button hover:bg-white hover:text-forge-orange transition-colors">
-              View @plumb.hero
+            <Link href="https://www.tiktok.com/@forge.talent" className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-montserrat font-semibold uppercase tracking-button hover:bg-white hover:text-forge-orange transition-colors">
+              View @forge.talent
             </Link>
           </div>
         </div>
