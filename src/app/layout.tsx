@@ -29,6 +29,19 @@ export const metadata: Metadata = {
     telephone: false,
   },
   metadataBase: new URL('https://forgetalentagency.com'),
+  icons: {
+    icon: [
+      { url: '/favicon/favicon.ico', sizes: 'any' },
+      { url: '/favicon/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+    ],
+    apple: '/favicon/apple-touch-icon.png',
+    other: [
+      { rel: 'icon', url: '/favicon/web-app-manifest-192x192.png', sizes: '192x192' },
+      { rel: 'icon', url: '/favicon/web-app-manifest-512x512.png', sizes: '512x512' },
+    ],
+  },
+  manifest: '/favicon/site.webmanifest',
   openGraph: {
     title: 'Forge Talent Agency - Premier TikTok & Instagram Talent Management',
     description: 'Professional talent agency specializing in TikTok and Instagram influencer management. Connect with top creators and grow your brand.',
