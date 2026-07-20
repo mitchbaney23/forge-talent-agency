@@ -1,138 +1,171 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
-import { IconHandshake, IconTarget, IconTrendingUp } from '@/components/icons'
+import Reveal from '@/components/Reveal'
+
+export const metadata: Metadata = {
+  title: 'About - Forge Talent Agency',
+  description:
+    'Forge is a boutique creator talent agency — small by design, built on real skills and real influence.',
+}
+
+const approach = [
+  {
+    n: '01',
+    title: 'Hands-on representation',
+    blurb: 'Work directly with Mitch, the founder — no account managers, no phone trees.',
+  },
+  {
+    n: '02',
+    title: 'Tailored partnerships',
+    blurb: 'The right creator with the right brand, every time. Fit over volume.',
+  },
+  {
+    n: '03',
+    title: 'Full-service deal management',
+    blurb: 'From negotiation to execution, the details are handled so creators can create.',
+  },
+]
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-heading font-bold tracking-heading-tight leading-heading text-forge-ink mb-6">
-              About Forge Talent Agency
-            </h1>
-            <div className="w-24 h-1 bg-forge-orange mx-auto mb-8"></div>
+    <div className="bg-paper">
+      {/* Hero */}
+      <section className="mx-auto max-w-7xl px-4 pb-16 pt-20 sm:px-6 lg:px-8 lg:pt-28">
+        <Reveal variant="lines">
+          <h1 className="font-display text-hero font-bold text-espresso">
+            <span className="block overflow-hidden">
+              <span className="line block" style={{ '--i': 0 } as React.CSSProperties}>
+                Real skills,
+              </span>
+            </span>
+            <span className="block overflow-hidden pb-[0.08em]">
+              <span className="line block" style={{ '--i': 1 } as React.CSSProperties}>
+                real <em className="font-accent text-flame">influence.</em>
+              </span>
+            </span>
+          </h1>
+        </Reveal>
+      </section>
+
+      {/* Story */}
+      <section className="mx-auto max-w-3xl px-4 pb-24 sm:px-6 lg:px-8">
+        <Reveal>
+          <div className="space-y-6 text-lg leading-body text-cocoa">
+            <p>
+              Forge Talent Agency was founded to bridge the gap between hardworking creators and
+              the brands that align with their craft. We believe in authentic storytelling — the
+              kind that resonates because it&apos;s built on real skill, real passion, and real
+              people.
+            </p>
+            <p>
+              Right now, Forge is a boutique agency — small by design — focused on giving every
+              creator dedicated attention and custom deal-making. Our first represented creator
+              has already built a community of over{' '}
+              <strong className="font-semibold text-ember">1 million followers</strong> and
+              generated{' '}
+              <strong className="font-semibold text-ember">tens of millions of organic views</strong>{' '}
+              by sharing real expertise with an audience that trusts him.
+            </p>
+            <p>
+              We help brands connect with creators who bring genuine authority to their
+              industries, and we help creators turn their audience into sustainable partnerships.
+            </p>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* Approach — numbered index */}
+      <section className="bg-parchment py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal className="mb-12">
+            <p className="mb-4 font-mono text-eyebrow uppercase text-ember">Our approach</p>
+            <h2 className="font-display text-display-lg font-bold text-espresso">
+              Small by <em className="font-accent text-flame">design</em>
+            </h2>
+          </Reveal>
+          <div className="border-b border-espresso/15">
+            {approach.map((item, i) => (
+              <Reveal key={item.n} index={i}>
+                <div className="grid grid-cols-[3.5rem_1fr] items-baseline gap-4 border-t border-espresso/15 px-4 py-8 sm:grid-cols-[4rem_1fr_auto] sm:px-6">
+                  <span className="font-mono text-sm text-ember">{item.n}</span>
+                  <span className="font-display text-display-sm font-semibold text-espresso">
+                    {item.title}
+                  </span>
+                  <span className="col-start-2 max-w-md leading-body text-cocoa sm:col-start-3 sm:text-right">
+                    {item.blurb}
+                  </span>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="py-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          {/* Turning Real Skills Into Real Influence */}
-          <div className="mb-16">
-            <h2 className="text-3xl md:text-4xl font-heading font-semibold tracking-heading-tight leading-heading text-forge-ink mb-8">
-              Turning Real Skills Into <span className="text-forge-orange">Real Influence</span>
-            </h2>
-            <div className="space-y-6 text-lg text-forge-body leading-body">
+      {/* Founder's note */}
+      <section className="mx-auto max-w-4xl px-4 py-24 sm:px-6 lg:px-8">
+        <Reveal>
+          <figure className="relative rounded-3xl bg-parchment p-8 sm:p-12">
+            <span
+              className="pointer-events-none absolute -top-8 left-6 font-accent text-[7rem] leading-none text-flame/30 sm:text-[9rem]"
+              aria-hidden="true"
+            >
+              &ldquo;
+            </span>
+            <blockquote className="relative space-y-5 text-lg italic leading-body text-cocoa">
               <p>
-                Forge Talent Agency was founded to bridge the gap between hardworking creators and the brands that align with their craft. We believe in authentic storytelling — the kind that resonates because it&apos;s built on real skill, real passion, and real people.
+                When I started Forge Talent Agency, my goal was simple: help talented people get
+                the recognition and opportunities they deserve without losing the authenticity
+                that made them stand out in the first place.
               </p>
               <p>
-                Right now, Forge is a boutique agency — small by design — focused on giving every creator dedicated attention and custom deal-making. Our first represented creator has already built a community of over <strong className="text-forge-orange">1 million followers</strong> and generated <strong className="text-forge-orange">tens of millions of organic views</strong> by sharing real expertise with an audience that trusts him.
+                With a background in sales and business development, I know how to build
+                relationships that last — and how to negotiate deals that work for both creators
+                and brands.
               </p>
               <p>
-                We help brands connect with creators who bring genuine authority to their industries, and we help creators turn their audience into sustainable partnerships.
+                Whether you&apos;re a creator ready to grow your partnerships or a company looking
+                for a trusted voice in your industry, I&apos;m here to make sure every connection
+                counts.
               </p>
-            </div>
-          </div>
-
-          <div className="w-full h-px bg-forge-line mb-16"></div>
-
-          {/* Our Approach */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-heading font-semibold tracking-heading-tight leading-heading text-forge-ink mb-8">
-              Our <span className="text-forge-orange">Approach</span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="p-6 bg-forge-mist rounded-2xl border border-forge-line">
-                <div className="w-12 h-12 rounded-xl bg-white text-forge-orange border border-forge-line flex items-center justify-center mb-4">
-                  <IconHandshake className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-heading font-semibold text-forge-ink mb-3">
-                  Hands-on Representation
-                </h3>
-                <p className="text-forge-body leading-body">
-                  Work directly with Mitch, the founder of Forge Talent Agency.
-                </p>
-              </div>
-
-              <div className="p-6 bg-forge-mist rounded-2xl border border-forge-line">
-                <div className="w-12 h-12 rounded-xl bg-white text-forge-orange border border-forge-line flex items-center justify-center mb-4">
-                  <IconTarget className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-heading font-semibold text-forge-ink mb-3">
-                  Tailored Brand Partnerships
-                </h3>
-                <p className="text-forge-body leading-body">
-                  Matching the right creator with the right brand, every time.
-                </p>
-              </div>
-
-              <div className="p-6 bg-forge-mist rounded-2xl border border-forge-line">
-                <div className="w-12 h-12 rounded-xl bg-white text-forge-orange border border-forge-line flex items-center justify-center mb-4">
-                  <IconTrendingUp className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-heading font-semibold text-forge-ink mb-3">
-                  Full-Service Deal Management
-                </h3>
-                <p className="text-forge-body leading-body">
-                  From negotiation to execution, all the details are handled so creators can focus on creating.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="w-full h-px bg-forge-line mb-16"></div>
-
-          {/* Founder's Note */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-heading font-semibold tracking-heading-tight leading-heading text-forge-ink mb-8">
-              Founder&apos;s <span className="text-forge-orange">Note</span>
-            </h2>
-            <div className="bg-forge-mist p-8 rounded-2xl border-l-4 border-forge-orange">
-              <blockquote className="text-lg text-forge-body leading-body italic mb-6">
-                &ldquo;When I started Forge Talent Agency, my goal was simple: help talented people get the recognition and opportunities they deserve without losing the authenticity that made them stand out in the first place.
-              </blockquote>
-              <blockquote className="text-lg text-forge-body leading-body italic mb-6">
-                With a background in sales and business development, I know how to build relationships that last — and how to negotiate deals that work for both creators and brands.
-              </blockquote>
-              <blockquote className="text-lg text-forge-body leading-body italic">
-                Whether you&apos;re a creator ready to grow your partnerships or a company looking for a trusted voice in your industry, I&apos;m here to make sure every connection counts.&rdquo;
-              </blockquote>
-              <div className="mt-6">
-                <p className="text-xl font-heading font-semibold text-forge-ink">— Mitch, Founder of Forge Talent Agency</p>
-              </div>
-            </div>
-          </div>
-        </div>
+            </blockquote>
+            <figcaption className="mt-8 flex items-center gap-3">
+              <span className="h-px w-10 bg-flame" aria-hidden="true" />
+              <span className="font-display text-lg font-semibold text-espresso">
+                Mitch, Founder
+              </span>
+              <span className="font-mono text-xs text-taupe">Forge Talent Agency</span>
+            </figcaption>
+          </figure>
+        </Reveal>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-forge-ink">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-heading font-semibold tracking-heading-tight leading-heading text-white mb-4">
-            Ready to <span className="text-forge-orange-light">Connect?</span>
-          </h2>
-          <p className="text-xl text-white/70 leading-body max-w-2xl mx-auto mb-8">
-            Whether you&apos;re a creator looking for representation or a brand seeking
-            authentic partnerships, we&apos;d love to hear from you.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="bg-forge-orange text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-forge-orange-dark transition-colors"
-            >
-              Get Started
-            </Link>
-            <Link
-              href="/creators"
-              className="border border-white/40 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-forge-ink transition-colors"
-            >
-              Meet Our Creators
-            </Link>
-          </div>
+      {/* CTA */}
+      <section className="relative overflow-hidden bg-espresso py-24">
+        <div className="ember-glow -top-1/3 left-[10%] h-[60vh] w-[80vw] motion-safe:animate-drift" />
+        <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <Reveal>
+            <h2 className="font-display text-display-lg font-bold text-apricot">
+              Ready to connect?
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg leading-body text-paper/70">
+              Whether you&apos;re a creator looking for representation or a brand seeking
+              authentic partnerships, we&apos;d love to hear from you.
+            </p>
+            <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+              <Link
+                href="/contact"
+                className="rounded-full bg-ember px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-ember-deep"
+              >
+                Get started
+              </Link>
+              <Link
+                href="/creators"
+                className="rounded-full border border-paper/30 px-8 py-4 text-lg font-semibold text-paper transition-colors hover:bg-paper hover:text-espresso"
+              >
+                Meet our creators
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
     </div>

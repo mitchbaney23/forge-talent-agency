@@ -37,7 +37,7 @@ export default function SocialMediaEmbed({
   const PlatformIcon = platform === 'tiktok' ? IconTikTok : IconInstagram
 
   return (
-    <div className={`aspect-[9/16] bg-forge-ink rounded-xl overflow-hidden ${className}`}>
+    <div className={`aspect-[9/16] bg-espresso rounded-xl overflow-hidden ${className}`}>
       <Link
         href={url}
         target="_blank"
@@ -48,20 +48,20 @@ export default function SocialMediaEmbed({
           <PlatformIcon className="w-10 h-10 text-white/80 mb-5" />
 
           {title && (
-            <h3 className="text-lg font-heading font-semibold text-white mb-2 line-clamp-2">
+            <h3 className="text-lg font-display font-semibold text-white mb-2 line-clamp-2">
               {title}
             </h3>
           )}
 
-          <p className="text-forge-orange-light font-medium mb-6">
+          <p className="text-amber font-medium mb-6">
             {creator.startsWith('@') ? creator : `@${creator}`}
           </p>
 
-          <div className="w-14 h-14 rounded-full bg-white/10 border border-white/20 flex items-center justify-center mb-6 group-hover:bg-forge-orange group-hover:border-forge-orange transition-colors">
+          <div className="w-14 h-14 rounded-full bg-white/10 border border-white/20 flex items-center justify-center mb-6 group-hover:bg-ember group-hover:border-ember transition-colors">
             <IconPlay className="w-6 h-6 text-white ml-0.5" />
           </div>
 
-          <div className="bg-white text-forge-ink px-6 py-2.5 rounded-full text-sm font-semibold group-hover:bg-forge-mist transition-colors">
+          <div className="bg-white text-espresso px-6 py-2.5 rounded-full text-sm font-semibold group-hover:bg-parchment transition-colors">
             Watch on {platformLabel}
           </div>
         </div>

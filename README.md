@@ -53,17 +53,30 @@ src/
 │   ├── sitemap.ts        # Generated from creator data
 │   └── robots.ts
 ├── components/
-│   ├── Navigation.tsx    # Main navigation
-│   ├── Footer.tsx        # Site footer
-│   ├── CreatorCard.tsx   # Roster grid card
+│   ├── Navigation.tsx    # Main navigation (with live local time)
+│   ├── Footer.tsx        # Site footer with giant wordmark
+│   ├── IndustryGrid.tsx  # Bento tile grid of industries + creators
 │   ├── TikTokEmbed.tsx   # Live TikTok embed with fallback
 │   ├── SocialMediaEmbed.tsx  # Link-out card / embed fallback
+│   ├── Reveal.tsx        # Scroll-reveal wrapper (IntersectionObserver)
+│   ├── CountUp.tsx       # Animated stat counter
+│   ├── Marquee.tsx       # Industries ticker (with pause control)
 │   └── icons.tsx         # Inline SVG icon set (Lucide + Simple Icons)
 ├── data/
-│   └── creators.ts       # Single source of truth for the roster
+│   ├── creators.ts       # Single source of truth for the roster
+│   └── industries.ts     # Industry tiles (chip colors, open seats)
 └── types/
     └── creator.ts        # Creator/CreatorVideo interfaces
 ```
+
+## Design System
+
+Warm paper/espresso palette with a flame-orange accent (tokens in
+`tailwind.config.js`), Bricolage Grotesque display type + Instrument Sans body +
+Instrument Serif italic accents + JetBrains Mono metadata (loaded via
+`next/font`), film-grain texture, and CSS-only motion (scroll reveals, marquee,
+count-up stats) — all gated behind `prefers-reduced-motion` and an `html.js`
+no-JS guard.
 
 ## Contact
 

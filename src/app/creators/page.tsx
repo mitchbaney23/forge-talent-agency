@@ -1,88 +1,106 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import CreatorCard from '@/components/CreatorCard'
-import { IconPlus } from '@/components/icons'
+import Reveal from '@/components/Reveal'
+import IndustryGrid from '@/components/IndustryGrid'
 import { signedCreators } from '@/data/creators'
 
 export const metadata: Metadata = {
   title: 'Our Creators - Forge Talent Agency',
   description:
-    'Meet the creators Forge represents — vetted voices with real expertise and audiences that trust them.',
+    'Meet the creators Forge represents — vetted voices with real expertise and audiences that trust them, one per industry.',
 }
 
 export default function Creators() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="bg-paper">
       {/* Hero */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-heading font-bold tracking-heading-tight leading-heading text-forge-ink mb-6">
-            Creators with <span className="text-forge-orange">real expertise</span>
+      <section className="mx-auto max-w-7xl px-4 pb-16 pt-20 sm:px-6 lg:px-8 lg:pt-28">
+        <Reveal variant="lines">
+          <h1 className="font-display text-hero font-bold text-espresso">
+            <span className="block overflow-hidden">
+              <span className="line block" style={{ '--i': 0 } as React.CSSProperties}>
+                One voice
+              </span>
+            </span>
+            <span className="block overflow-hidden pb-[0.08em]">
+              <span className="line block" style={{ '--i': 1 } as React.CSSProperties}>
+                per <em className="font-accent text-flame">industry.</em>
+              </span>
+            </span>
           </h1>
-          <p className="text-xl md:text-2xl text-forge-body leading-body max-w-3xl mx-auto">
-            Every creator we represent has built their audience on genuine skill — and the trust that comes with it.
+        </Reveal>
+        <Reveal index={2}>
+          <p className="mt-8 max-w-2xl text-lg leading-body text-cocoa">
+            We keep the roster deliberately small — every creator we represent gets our full
+            attention, and no two compete for the same audience. Signed seats are shown below;
+            everything else is open.
           </p>
-        </div>
+        </Reveal>
       </section>
 
-      {/* Roster grid */}
-      <section className="py-20 bg-forge-mist">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {signedCreators.map((creator) => (
-              <CreatorCard key={creator.slug} creator={creator} />
-            ))}
+      {/* Bento grid */}
+      <section className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
+        <h2 className="sr-only">The roster, by industry</h2>
+        <IndustryGrid />
+      </section>
 
-            {/* Apply tile */}
-            <Link
-              href="/contact"
-              className="group flex flex-col items-center justify-center text-center border-2 border-dashed border-forge-line rounded-2xl p-8 min-h-[320px] hover:border-forge-orange/60 transition-colors"
-            >
-              <div className="w-14 h-14 rounded-full bg-white border border-forge-line flex items-center justify-center mb-5 text-forge-muted group-hover:text-forge-orange group-hover:border-forge-orange/60 transition-colors">
-                <IconPlus className="w-6 h-6" />
-              </div>
-              <h2 className="text-xl font-heading font-semibold tracking-heading-tight text-forge-ink mb-2">
-                Our roster is growing
-              </h2>
-              <p className="text-forge-body leading-body mb-4">
-                We&apos;re selective about who we represent. Think you&apos;re a fit?
-              </p>
-              <span className="text-sm font-semibold text-forge-orange-dark">
-                Apply for representation →
+      {/* Roster gate — industry-standard "ask us" posture */}
+      <section className="relative overflow-hidden bg-espresso py-24">
+        <div className="ember-glow -bottom-1/3 left-1/3 h-[70vh] w-[80vw] motion-safe:animate-drift" />
+        <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <Reveal>
+            <p className="font-mono text-eyebrow uppercase text-amber">
+              {signedCreators.length === 1
+                ? `${signedCreators[0].stats.totalViews} combined views · every major platform`
+                : `${signedCreators.length} creators · every major platform`}
+            </p>
+            <Link href="/contact" className="group mt-6 block">
+              <span
+                className="block font-display text-display-lg font-bold text-transparent transition-colors duration-300 group-hover:text-apricot/40"
+                style={{ WebkitTextStroke: '1.5px rgba(245,183,138,0.5)' }}
+                aria-hidden="true"
+              >
+                Request the roster
+              </span>
+              <span className="block font-display text-display-lg font-bold text-apricot">
+                Request the roster
               </span>
             </Link>
+          </Reveal>
+          <Reveal index={1}>
+            <p className="mx-auto mt-6 max-w-xl leading-body text-paper/70">
+              Tell us who you&apos;re trying to reach and we&apos;ll match you with the right
+              creator — including talent we&apos;re signing that isn&apos;t public yet.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Creator application band */}
+      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <Reveal>
+          <div className="grid items-center gap-10 rounded-3xl bg-parchment p-8 lg:grid-cols-[7fr_5fr] lg:p-14">
+            <div>
+              <p className="mb-4 font-mono text-eyebrow uppercase text-ember">For creators</p>
+              <h2 className="font-display text-display-md font-bold text-espresso">
+                Think you should hold one of these <em className="font-accent text-flame">seats?</em>
+              </h2>
+              <p className="mt-4 max-w-lg leading-body text-cocoa">
+                We&apos;re selective on purpose — but if you&apos;ve built a genuine audience
+                around real expertise, we want to hear from you. Commission-based, no upfront
+                fees, ever.
+              </p>
+            </div>
+            <div className="lg:justify-self-end">
+              <Link
+                href="/contact"
+                className="inline-block rounded-full bg-ember px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-ember-deep"
+              >
+                Apply for representation
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Selective band */}
-      <section className="py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-heading font-semibold tracking-heading-tight leading-heading text-forge-ink mb-6">
-            Small by design
-          </h2>
-          <p className="text-lg text-forge-body leading-body">
-            Forge is a boutique agency on purpose. We keep our roster small so every creator gets dedicated attention, custom deal-making, and partnerships that actually fit their audience — and every brand gets a creator who can genuinely represent them.
-          </p>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 bg-forge-ink">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-heading font-semibold tracking-heading-tight leading-heading text-white mb-4">
-            Want to work with our <span className="text-forge-orange-light">creators?</span>
-          </h2>
-          <p className="text-xl text-white/70 leading-body max-w-2xl mx-auto mb-8">
-            Tell us about your brand and we&apos;ll match you with the right voice.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-block bg-forge-orange text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-forge-orange-dark transition-colors"
-          >
-            Start the conversation
-          </Link>
-        </div>
+        </Reveal>
       </section>
     </div>
   )

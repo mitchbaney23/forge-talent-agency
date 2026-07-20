@@ -1,19 +1,36 @@
 import type { Metadata } from 'next'
-import { Inter, Montserrat } from 'next/font/google'
+import {
+  Bricolage_Grotesque,
+  Instrument_Sans,
+  Instrument_Serif,
+  JetBrains_Mono,
+} from 'next/font/google'
 import './globals.css'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 
-const inter = Inter({
+const display = Bricolage_Grotesque({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-inter',
+  variable: '--font-display',
+  axes: ['opsz'],
 })
 
-const montserrat = Montserrat({
+const body = Instrument_Sans({
   subsets: ['latin'],
-  weight: ['500', '600', '700'],
-  variable: '--font-montserrat',
+  variable: '--font-body',
+})
+
+const accent = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: 'italic',
+  variable: '--font-accent',
+})
+
+const mono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-mono',
 })
 
 export const metadata: Metadata = {
@@ -48,11 +65,13 @@ export const metadata: Metadata = {
     siteName: 'Forge Talent Agency',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/favicon/web-app-manifest-512x512.png', width: 512, height: 512 }],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     title: 'Forge Talent Agency - Creator Talent Management',
     description: 'A boutique talent agency representing creators with real expertise and genuine audiences. We connect brands with the right creators and manage partnerships end to end.',
+    images: ['/favicon/web-app-manifest-512x512.png'],
   },
   robots: {
     index: true,
@@ -95,21 +114,31 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} ${montserrat.variable} font-sans`}>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${display.variable} ${body.variable} ${accent.variable} ${mono.variable} font-sans`}
+      >
+        {/* Runs at parse time, before first paint, so reveal-hidden styles
+            only ever apply when JS is genuinely available */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:bg-white focus:text-forge-ink focus:px-4 focus:py-2 focus:rounded-lg focus:ring-2 focus:ring-forge-orange"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:bg-white focus:text-espresso focus:px-4 focus:py-2 focus:rounded-lg focus:ring-2 focus:ring-ember"
         >
           Skip to content
         </a>
         <Navigation />
         <main id="main-content">{children}</main>
         <Footer />
+        <div className="grain-overlay" aria-hidden="true" />
       </body>
     </html>
   )
