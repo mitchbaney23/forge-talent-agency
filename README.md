@@ -1,23 +1,22 @@
 # Forge Talent Agency Website
 
-A modern, ultra-clean website for Forge Talent Agency - premier talent management for TikTok and Instagram influencers.
+The marketing site for Forge Talent Agency — a boutique agency representing creators with real expertise and genuine audiences.
 
-## 🌟 Features
+## Features
 
-- **Modern Design**: Clean, minimalist aesthetic inspired by leading creative agencies
-- **Social Media Integration**: TikTok and Instagram video embedding capabilities
-- **Responsive Design**: Optimized for all devices and screen sizes
-- **Performance Optimized**: Built with Next.js 14 for blazing fast loading
-- **SEO Ready**: Comprehensive meta tags and optimizations
+- **Multi-creator roster**: All creator content is driven by a single data file — add an entry and every page, the sitemap, and the homepage featured card update automatically
+- **Real TikTok embeds**: Live video embeds with a designed fallback card when embeds can't load
+- **Responsive design**: Optimized for all devices and screen sizes
+- **SEO ready**: Per-creator metadata, JSON-LD, sitemap, and robots.txt
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-- **Framework**: Next.js 14 with App Router
+- **Framework**: Next.js 15 with App Router (React 19)
 - **Styling**: Tailwind CSS
 - **Language**: TypeScript
-- **Deployment**: Ready for Vercel, Netlify, or any modern hosting platform
+- **Email**: Nodemailer (contact form, requires `EMAIL_USER`/`EMAIL_PASS` in `.env.local`)
 
-## 🚀 Getting Started
+## Getting Started
 
 1. Install dependencies:
 ```bash
@@ -31,35 +30,41 @@ npm run dev
 
 3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## 📁 Project Structure
+## Adding a Creator
+
+Edit `src/data/creators.ts`:
+
+1. Add a new entry to the `creators` array (use the commented template in the file).
+2. Set `signed: true` when the creator has signed — only signed creators appear on the site.
+3. Set `featured: true` on the one creator to spotlight on the homepage.
+4. Drop their avatar in `public/assets/images/` and reference it in the entry.
+
+Their roster card, profile page (`/creators/<slug>`), and sitemap entry are generated automatically.
+
+## Project Structure
 
 ```
 src/
-├── app/                 # Next.js app router pages
-│   ├── about/          # About page
-│   ├── clients/        # Client showcase
-│   ├── contact/        # Contact form
-│   ├── services/       # Services page
-│   └── testimonials/   # Success stories
-├── components/         # Reusable components
-│   ├── Navigation.tsx  # Main navigation
-│   ├── Footer.tsx      # Site footer
-│   └── SocialMediaEmbed.tsx # Social media components
-└── assets/            # Static assets
-    └── logos/         # Company logos
+├── app/
+│   ├── about/            # About page
+│   ├── creators/         # Roster grid + [slug] profile pages
+│   ├── contact/          # Contact form (posts to /api/contact)
+│   ├── api/contact/      # Nodemailer email handler
+│   ├── sitemap.ts        # Generated from creator data
+│   └── robots.ts
+├── components/
+│   ├── Navigation.tsx    # Main navigation
+│   ├── Footer.tsx        # Site footer
+│   ├── CreatorCard.tsx   # Roster grid card
+│   ├── TikTokEmbed.tsx   # Live TikTok embed with fallback
+│   ├── SocialMediaEmbed.tsx  # Link-out card / embed fallback
+│   └── icons.tsx         # Inline SVG icon set (Lucide + Simple Icons)
+├── data/
+│   └── creators.ts       # Single source of truth for the roster
+└── types/
+    └── creator.ts        # Creator/CreatorVideo interfaces
 ```
 
-## 🎨 Design Philosophy
+## Contact
 
-- **Clean & Modern**: Inspired by top creative agencies
-- **User-Focused**: Intuitive navigation and clear calls-to-action
-- **Performance First**: Optimized for speed and accessibility
-- **Mobile Ready**: Responsive design for all devices
-
-## 📧 Contact
-
-For questions about this website, contact Forge Talent Agency.
-
----
-
-Built with ❤️ by Forge Talent Agency
+For questions about this website, contact Forge Talent Agency at mitch@forgetalentagency.com.

@@ -3,6 +3,34 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
+import { featuredCreator } from '@/data/creators'
+import {
+  IconHandshake,
+  IconTarget,
+  IconTrendingUp,
+  IconBanknote,
+  IconClock,
+} from '@/components/icons'
+
+function FeatureTile({
+  icon,
+  title,
+  children,
+}: {
+  icon: React.ReactNode
+  title: string
+  children: React.ReactNode
+}) {
+  return (
+    <div className="text-center p-6">
+      <div className="w-12 h-12 rounded-xl bg-forge-mist text-forge-orange flex items-center justify-center mx-auto mb-4">
+        {icon}
+      </div>
+      <h3 className="text-xl font-heading font-semibold text-forge-ink mb-3">{title}</h3>
+      <p className="text-forge-body leading-body">{children}</p>
+    </div>
+  )
+}
 
 export default function Home() {
   const [activeView, setActiveView] = useState<'brands' | 'creators'>('brands')
@@ -10,27 +38,29 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section with Toggle */}
-      <section className="relative bg-white py-20 lg:py-32">
+      <section className="relative bg-white py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Toggle Selector */}
           <div className="flex justify-center mb-12">
-            <div className="bg-gray-100 rounded-lg p-1 inline-flex">
+            <div className="bg-forge-mist border border-forge-line rounded-full p-1 inline-flex">
               <button
                 onClick={() => setActiveView('brands')}
-                className={`px-6 py-3 rounded-md font-semibold transition-all duration-300 ${
+                aria-pressed={activeView === 'brands'}
+                className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
                   activeView === 'brands'
-                    ? 'bg-forge-orange text-white shadow-md'
-                    : 'text-forge-charcoal hover:text-forge-orange'
+                    ? 'bg-white text-forge-orange-dark shadow-sm'
+                    : 'text-forge-body hover:text-forge-ink'
                 }`}
               >
                 For Brands
               </button>
               <button
                 onClick={() => setActiveView('creators')}
-                className={`px-6 py-3 rounded-md font-semibold transition-all duration-300 ${
+                aria-pressed={activeView === 'creators'}
+                className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
                   activeView === 'creators'
-                    ? 'bg-forge-orange text-white shadow-md'
-                    : 'text-forge-charcoal hover:text-forge-orange'
+                    ? 'bg-white text-forge-orange-dark shadow-sm'
+                    : 'text-forge-body hover:text-forge-ink'
                 }`}
               >
                 For Creators
@@ -43,96 +73,144 @@ export default function Home() {
             {activeView === 'brands' ? (
               // For Brands View
               <>
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold uppercase tracking-heading-tight leading-heading text-forge-charcoal mb-6">
-                  Connect with the Right Creator
-                  <span className="block text-forge-orange">for Your Brand</span>
+                <h1 className="text-4xl md:text-6xl font-heading font-bold tracking-heading-tight leading-heading text-forge-ink mb-6">
+                  Connect with the right creator
+                  <span className="block text-forge-orange">for your brand</span>
                 </h1>
-                <p className="text-xl md:text-2xl text-text-gray font-sans font-normal leading-body max-w-3xl mx-auto mb-12">
+                <p className="text-xl md:text-2xl text-forge-body leading-body max-w-3xl mx-auto mb-12">
                   We help brands connect with authentic, high-impact creators.
                 </p>
 
                 {/* Featured Creator Card */}
-                <div className="max-w-2xl mx-auto mb-12 bg-white border border-gray-200 rounded-2xl p-8 shadow-lg">
-                  <div className="w-24 h-24 rounded-full mx-auto mb-6 overflow-hidden ring-4 ring-forge-orange">
+                {featuredCreator && (
+                <Link
+                  href={`/creators/${featuredCreator.slug}`}
+                  className="group block max-w-2xl mx-auto mb-12 bg-white border border-forge-line rounded-2xl p-8 hover:shadow-md hover:border-forge-orange/40 transition-all"
+                >
+                  <div className="w-24 h-24 rounded-full mx-auto mb-5 overflow-hidden ring-2 ring-forge-orange/60">
                     <Image
-                      src="/assets/images/plumbhero.jpeg"
-                      alt="Plumb Hero Profile Picture"
+                      src={featuredCreator.avatar}
+                      alt={`${featuredCreator.name} profile picture`}
                       width={96}
                       height={96}
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <h3 className="text-2xl font-heading font-semibold text-forge-charcoal mb-4">Featured Creator</h3>
+                  <div className="text-sm font-semibold text-forge-muted mb-1">Featured Creator</div>
+                  <h2 className="text-2xl font-heading font-semibold text-forge-ink mb-1">
+                    {featuredCreator.name}
+                  </h2>
+                  <p className="text-forge-orange-dark font-medium mb-6">{featuredCreator.handle}</p>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-forge-orange mb-1">1M+</div>
-                      <div className="text-sm text-gray-600">Total Followers</div>
+                      <div className="text-3xl font-heading font-semibold text-forge-orange mb-1">
+                        {featuredCreator.stats.followers}
+                      </div>
+                      <div className="text-sm text-forge-muted">Total Followers</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-forge-orange mb-1">50M+</div>
-                      <div className="text-sm text-gray-600">Video Views</div>
+                      <div className="text-3xl font-heading font-semibold text-forge-orange mb-1">
+                        {featuredCreator.stats.totalViews}
+                      </div>
+                      <div className="text-sm text-forge-muted">Video Views</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-forge-orange mb-1">3</div>
-                      <div className="text-sm text-gray-600">Platforms</div>
+                      <div className="text-3xl font-heading font-semibold text-forge-orange mb-1">
+                        {featuredCreator.platforms.length}
+                      </div>
+                      <div className="text-sm text-forge-muted">Platforms</div>
                     </div>
                   </div>
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <div className="font-semibold text-forge-charcoal mb-2">Focus Areas:</div>
+                  <div className="bg-forge-mist rounded-xl p-4">
+                    <div className="font-semibold text-forge-ink mb-2 text-sm">Focus Areas</div>
                     <div className="flex flex-wrap gap-2 justify-center">
-                      <span className="bg-forge-orange text-white px-3 py-1 rounded-full text-sm font-medium">Trades</span>
-                      <span className="bg-forge-orange text-white px-3 py-1 rounded-full text-sm font-medium">Tools</span>
-                      <span className="bg-forge-orange text-white px-3 py-1 rounded-full text-sm font-medium">Blue-Collar Industry</span>
+                      {featuredCreator.focusAreas.map((area) => (
+                        <span
+                          key={area}
+                          className="bg-white border border-forge-line text-forge-ink px-3 py-1 rounded-full text-sm font-medium"
+                        >
+                          {area}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                </div>
-
+                </Link>
+                )}
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/contact" className="bg-forge-orange text-white px-8 py-4 rounded-lg text-lg font-montserrat font-semibold uppercase tracking-button hover:bg-forge-orange-dark transition-colors">
+                  <Link
+                    href="/contact"
+                    className="bg-forge-orange text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-forge-orange-dark transition-colors"
+                  >
                     Start Your Campaign
                   </Link>
-                  <Link href="/clients" className="border-2 border-forge-orange text-forge-orange px-8 py-4 rounded-lg text-lg font-montserrat font-semibold uppercase tracking-button hover:bg-forge-orange hover:text-white transition-colors">
-                    View Portfolio
+                  <Link
+                    href="/creators"
+                    className="border border-forge-line text-forge-ink px-8 py-4 rounded-lg text-lg font-semibold hover:border-forge-orange hover:text-forge-orange transition-colors"
+                  >
+                    Meet Our Creators
                   </Link>
                 </div>
               </>
             ) : (
               // For Creators View
               <>
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold uppercase tracking-heading-tight leading-heading text-forge-charcoal mb-6">
-                  Forge Stronger
-                  <span className="block text-forge-orange">Brand Partnerships</span>
+                <h1 className="text-4xl md:text-6xl font-heading font-bold tracking-heading-tight leading-heading text-forge-ink mb-6">
+                  Forge stronger
+                  <span className="block text-forge-orange">brand partnerships</span>
                 </h1>
-                <p className="text-xl md:text-2xl text-text-gray font-sans font-normal leading-body max-w-3xl mx-auto mb-12">
+                <p className="text-xl md:text-2xl text-forge-body leading-body max-w-3xl mx-auto mb-12">
                   We negotiate, manage, and grow your brand deals so you can focus on creating.
                 </p>
 
                 {/* Services Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                  <div className="bg-white border border-gray-200 rounded-xl p-6">
-                    <div className="text-4xl mb-4">🤝</div>
-                    <h3 className="text-xl font-heading font-semibold text-forge-charcoal mb-3">Deal Negotiation & Contract Management</h3>
-                    <p className="text-text-gray font-sans font-normal leading-body">We handle the business side so you get fair deals and clear terms.</p>
+                  <div className="bg-white border border-forge-line rounded-2xl p-6 text-left">
+                    <div className="w-12 h-12 rounded-xl bg-forge-mist text-forge-orange flex items-center justify-center mb-4">
+                      <IconHandshake className="w-6 h-6" />
+                    </div>
+                    <h2 className="text-xl font-heading font-semibold text-forge-ink mb-3">
+                      Deal Negotiation & Contract Management
+                    </h2>
+                    <p className="text-forge-body leading-body">
+                      We handle the business side so you get fair deals and clear terms.
+                    </p>
                   </div>
-                  <div className="bg-white border border-gray-200 rounded-xl p-6">
-                    <div className="text-4xl mb-4">🎯</div>
-                    <h3 className="text-xl font-heading font-semibold text-forge-charcoal mb-3">Brand Matchmaking</h3>
-                    <p className="text-text-gray font-sans font-normal leading-body">Connect with brands that align with your content and audience.</p>
+                  <div className="bg-white border border-forge-line rounded-2xl p-6 text-left">
+                    <div className="w-12 h-12 rounded-xl bg-forge-mist text-forge-orange flex items-center justify-center mb-4">
+                      <IconTarget className="w-6 h-6" />
+                    </div>
+                    <h2 className="text-xl font-heading font-semibold text-forge-ink mb-3">
+                      Brand Matchmaking
+                    </h2>
+                    <p className="text-forge-body leading-body">
+                      Connect with brands that align with your content and audience.
+                    </p>
                   </div>
-                  <div className="bg-white border border-gray-200 rounded-xl p-6">
-                    <div className="text-4xl mb-4">📊</div>
-                    <h3 className="text-xl font-heading font-semibold text-forge-charcoal mb-3">Content Performance Tracking</h3>
-                    <p className="text-text-gray font-sans font-normal leading-body">Data-driven insights to optimize your content and partnerships.</p>
+                  <div className="bg-white border border-forge-line rounded-2xl p-6 text-left">
+                    <div className="w-12 h-12 rounded-xl bg-forge-mist text-forge-orange flex items-center justify-center mb-4">
+                      <IconTrendingUp className="w-6 h-6" />
+                    </div>
+                    <h2 className="text-xl font-heading font-semibold text-forge-ink mb-3">
+                      Content Performance Tracking
+                    </h2>
+                    <p className="text-forge-body leading-body">
+                      Data-driven insights to optimize your content and partnerships.
+                    </p>
                   </div>
                 </div>
 
-
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/contact" className="bg-forge-orange text-white px-8 py-4 rounded-lg text-lg font-montserrat font-semibold uppercase tracking-button hover:bg-forge-orange-dark transition-colors">
+                  <Link
+                    href="/contact"
+                    className="bg-forge-orange text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-forge-orange-dark transition-colors"
+                  >
                     Apply for Representation
                   </Link>
-                  <Link href="/services" className="border-2 border-forge-orange text-forge-orange px-8 py-4 rounded-lg text-lg font-montserrat font-semibold uppercase tracking-button hover:bg-forge-orange hover:text-white transition-colors">
+                  <Link
+                    href="/about"
+                    className="border border-forge-line text-forge-ink px-8 py-4 rounded-lg text-lg font-semibold hover:border-forge-orange hover:text-forge-orange transition-colors"
+                  >
                     Learn More
                   </Link>
                 </div>
@@ -143,56 +221,43 @@ export default function Home() {
       </section>
 
       {/* Why Choose Forge Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-forge-mist">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-heading font-extrabold uppercase tracking-heading-tight leading-heading text-forge-charcoal mb-4">
+            <h2 className="text-3xl md:text-4xl font-heading font-semibold tracking-heading-tight leading-heading text-forge-ink mb-4">
               Why Choose Forge?
             </h2>
-            <p className="text-xl text-text-gray font-sans font-normal leading-body max-w-2xl mx-auto">
-              {activeView === 'brands' 
+            <p className="text-xl text-forge-body leading-body max-w-2xl mx-auto">
+              {activeView === 'brands'
                 ? 'We connect you with authentic creators who drive real results'
-                : 'We handle the business so you can focus on what you do best'
-              }
+                : 'We handle the business so you can focus on what you do best'}
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {activeView === 'brands' ? (
               <>
-                <div className="text-center p-6">
-                  <div className="text-5xl mb-4">🎯</div>
-                  <h3 className="text-xl font-heading font-semibold text-forge-charcoal mb-3">Authentic Reach</h3>
-                  <p className="text-text-gray font-sans font-normal leading-body">Our creators have genuine engagement with audiences that trust their recommendations</p>
-                </div>
-                <div className="text-center p-6">
-                  <div className="text-5xl mb-4">📊</div>
-                  <h3 className="text-xl font-heading font-semibold text-forge-charcoal mb-3">Proven Results</h3>
-                  <p className="text-text-gray font-sans font-normal leading-body">Track record of successful campaigns with measurable ROI</p>
-                </div>
-                <div className="text-center p-6">
-                  <div className="text-5xl mb-4">🤝</div>
-                  <h3 className="text-xl font-heading font-semibold text-forge-charcoal mb-3">Full Service</h3>
-                  <p className="text-text-gray font-sans font-normal leading-body">From strategy to execution, we handle every aspect of your creator partnerships</p>
-                </div>
+                <FeatureTile icon={<IconTarget className="w-6 h-6" />} title="Authentic Reach">
+                  Our creators have genuine engagement with audiences that trust their recommendations
+                </FeatureTile>
+                <FeatureTile icon={<IconTrendingUp className="w-6 h-6" />} title="Proven Results">
+                  Track record of successful campaigns with measurable ROI
+                </FeatureTile>
+                <FeatureTile icon={<IconHandshake className="w-6 h-6" />} title="Full Service">
+                  From strategy to execution, we handle every aspect of your creator partnerships
+                </FeatureTile>
               </>
             ) : (
               <>
-                <div className="text-center p-6">
-                  <div className="text-5xl mb-4">💰</div>
-                  <h3 className="text-xl font-heading font-semibold text-forge-charcoal mb-3">Better Deals</h3>
-                  <p className="text-text-gray font-sans font-normal leading-body">We negotiate higher rates and better terms than you could get on your own</p>
-                </div>
-                <div className="text-center p-6">
-                  <div className="text-5xl mb-4">⏰</div>
-                  <h3 className="text-xl font-heading font-semibold text-forge-charcoal mb-3">Save Time</h3>
-                  <p className="text-text-gray font-sans font-normal leading-body">No more back-and-forth emails or contract headaches</p>
-                </div>
-                <div className="text-center p-6">
-                  <div className="text-5xl mb-4">📈</div>
-                  <h3 className="text-xl font-heading font-semibold text-forge-charcoal mb-3">Grow Faster</h3>
-                  <p className="text-text-gray font-sans font-normal leading-body">Focus on creating while we handle the business side of your career</p>
-                </div>
+                <FeatureTile icon={<IconBanknote className="w-6 h-6" />} title="Better Deals">
+                  We negotiate higher rates and better terms than you could get on your own
+                </FeatureTile>
+                <FeatureTile icon={<IconClock className="w-6 h-6" />} title="Save Time">
+                  No more back-and-forth emails or contract headaches
+                </FeatureTile>
+                <FeatureTile icon={<IconTrendingUp className="w-6 h-6" />} title="Grow Faster">
+                  Focus on creating while we handle the business side of your career
+                </FeatureTile>
               </>
             )}
           </div>
@@ -200,23 +265,21 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-forge-orange">
+      <section className="py-20 bg-forge-ink">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-heading font-extrabold uppercase tracking-heading-tight leading-heading text-white mb-4">
-            {activeView === 'brands' 
-              ? 'Ready to Launch Your Next Campaign?'
-              : 'Ready to Level Up Your Creator Career?'
-            }
+          <h2 className="text-3xl md:text-4xl font-heading font-semibold tracking-heading-tight leading-heading text-white mb-4">
+            {activeView === 'brands'
+              ? 'Ready to launch your next campaign?'
+              : 'Ready to level up your creator career?'}
           </h2>
-          <p className="text-xl text-orange-100 font-sans font-normal leading-body max-w-2xl mx-auto mb-8">
+          <p className="text-xl text-white/70 leading-body max-w-2xl mx-auto mb-8">
             {activeView === 'brands'
               ? 'Connect with creators who can authentically represent your brand and drive real results.'
-              : 'Join our roster and let us handle the business while you focus on creating amazing content.'
-            }
+              : 'Join our roster and let us handle the business while you focus on creating amazing content.'}
           </p>
-          <Link 
-            href="/contact" 
-            className="bg-white text-forge-orange px-8 py-4 rounded-lg text-lg font-montserrat font-semibold uppercase tracking-button hover:bg-gray-50 transition-colors"
+          <Link
+            href="/contact"
+            className="inline-block bg-forge-orange text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-forge-orange-dark transition-colors"
           >
             {activeView === 'brands' ? 'Get Started Today' : 'Apply Now'}
           </Link>
