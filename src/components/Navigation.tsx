@@ -25,14 +25,16 @@ export default function Navigation() {
               aria-label="Forge Talent Agency — Home"
             >
               <Image
-                src="/assets/logos/forge-mark.png"
+                src="/assets/logos/forge-mark.png?v=2"
                 alt=""
-                width={950}
-                height={517}
+                width={898}
+                height={465}
                 className="h-8 w-auto md:h-10"
                 priority
               />
-              <span className="flex flex-col leading-[0.95]">
+              {/* Zilla Slab's line box seats the glyphs low; nudge the column up
+                  so the cap of FORGE and the anvil's top edge align optically */}
+              <span className="flex -translate-y-[3px] flex-col leading-[0.95] md:-translate-y-[3.5px]">
                 <span className="font-slab text-2xl font-bold tracking-[0.02em] text-[#C45402] md:text-3xl">
                   FORGE
                 </span>
