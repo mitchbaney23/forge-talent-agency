@@ -4,6 +4,7 @@ import {
   Instrument_Sans,
   Instrument_Serif,
   JetBrains_Mono,
+  Zilla_Slab,
 } from 'next/font/google'
 import './globals.css'
 import Navigation from '@/components/Navigation'
@@ -31,6 +32,12 @@ const mono = JetBrains_Mono({
   subsets: ['latin'],
   weight: ['400', '500'],
   variable: '--font-mono',
+})
+
+const slab = Zilla_Slab({
+  subsets: ['latin'],
+  weight: '700',
+  variable: '--font-slab',
 })
 
 export const metadata: Metadata = {
@@ -116,7 +123,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${display.variable} ${body.variable} ${accent.variable} ${mono.variable} font-sans`}
+        className={`${display.variable} ${body.variable} ${accent.variable} ${mono.variable} ${slab.variable} font-sans`}
       >
         {/* Runs at parse time, before first paint, so reveal-hidden styles
             only ever apply when JS is genuinely available */}

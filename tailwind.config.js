@@ -36,6 +36,7 @@ module.exports = {
         sans: ['var(--font-body)', 'system-ui', 'sans-serif'],
         accent: ['var(--font-accent)', 'Georgia', 'serif'],
         mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
+        slab: ['var(--font-slab)', 'Georgia', 'serif'],
       },
       fontSize: {
         hero: ['clamp(3rem, 8.5vw, 7.25rem)', { lineHeight: '0.95', letterSpacing: '-0.03em' }],

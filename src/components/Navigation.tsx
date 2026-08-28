@@ -19,15 +19,27 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           <div className="flex items-center gap-6">
-            <Link href="/" className="flex items-center">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2.5 sm:gap-3"
+              aria-label="Forge Talent Agency — Home"
+            >
               <Image
-                src="/assets/logos/forge-logo.png"
-                alt="Forge Talent Agency"
-                width={64}
-                height={64}
-                className="h-14 w-auto"
+                src="/assets/logos/forge-mark.png"
+                alt=""
+                width={950}
+                height={517}
+                className="h-8 w-auto md:h-10"
                 priority
               />
+              <span className="flex flex-col leading-[0.95]">
+                <span className="font-slab text-2xl font-bold tracking-[0.02em] text-[#C45402] md:text-3xl">
+                  FORGE
+                </span>
+                <span className="text-[0.72rem] font-bold uppercase tracking-[0.16em] text-espresso md:text-[0.78rem]">
+                  Talent Agency
+                </span>
+              </span>
             </Link>
             <span className="hidden lg:block">
               <LocalTime />
