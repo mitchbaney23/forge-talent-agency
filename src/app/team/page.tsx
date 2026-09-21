@@ -31,8 +31,8 @@ export default function Team() {
         </Reveal>
         <Reveal index={2}>
           <p className="mt-8 max-w-2xl text-lg leading-body text-cocoa">
-            Boutique means you always know who you&apos;re working with. No account managers, no
-            phone trees — just the three of us, and we answer our own email.
+            There are three of us. Whoever answers your first email is who you&apos;ll be working
+            with, start to finish.
           </p>
         </Reveal>
       </section>
