@@ -31,8 +31,8 @@ export default function Team() {
         </Reveal>
         <Reveal index={2}>
           <p className="mt-8 max-w-2xl text-lg leading-body text-cocoa">
-            There are three of us. Whoever answers your first email is who you&apos;ll be working
-            with, start to finish.
+            Three managers, each with their own roster. You&apos;re assigned one of us, and
+            we&apos;ll handle your partnerships from first conversation through signed deal.
           </p>
         </Reveal>
       </section>
