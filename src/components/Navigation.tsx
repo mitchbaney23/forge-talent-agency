@@ -8,6 +8,7 @@ import LocalTime from '@/components/LocalTime'
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
+  { href: '/team', label: 'Team' },
   { href: '/creators', label: 'Creators' },
 ]
 
