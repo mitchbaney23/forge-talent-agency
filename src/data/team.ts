@@ -23,31 +23,27 @@ export const team: TeamMember[] = [
     role: 'Founder',
     photo: '/assets/team/mitch.jpg',
     background:
-      'Founded Forge to bridge the gap between hardworking creators and the brands that align with their craft, with a background in sales and business development.',
+      'Mitch has been in sales for over 10 years and has a passion for getting his clients the best deal possible and ensuring organization through any transaction. Mitch started Forge Talent Agency to build a better system to help creators connect with brands and Forge meaningful relationships to create better content and outcomes for everyone involved.',
     goTo: 'Building relationships that last — and negotiating deals that work for creators and brands alike.',
-    wins: [],
+    wins: ['His three cats', 'His founding partners — for going on the journey with him'],
     personal: '',
   },
   {
     slug: 'john-caldwell',
-    name: 'John Caldwell',
-    role: 'Talent Manager',
+    name: 'John',
+    role: 'Founding Partner',
     photo: '/assets/team/john-caldwell.webp',
     background:
       '8 years across sales, operations, business development, and relationship management.',
     goTo: 'Knowing a guy, finding a guy, or becoming the guy.',
-    wins: [
-      'Proud husband',
-      'President’s Club winner',
-      'Incredibly average half marathon runner',
-    ],
+    wins: ['President’s Club winner', 'Incredibly average half marathon runner'],
     personal:
       'Watching the Indianapolis Colts get his hopes up every Sunday, and taking long walks on the beach with his wife and their black Lab.',
   },
   {
     slug: 'kelli-langley',
     name: 'Kelli',
-    role: 'Talent Manager',
+    role: 'Founding Partner',
     photo: '/assets/team/kelli-langley.webp',
     background:
       '5+ years in business development before becoming a full-time stay-at-home mom.',
