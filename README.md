@@ -30,6 +30,25 @@ npm run dev
 
 3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
+4. For the contact form to send email locally, create `.env.local` with:
+```
+EMAIL_USER=you@forgetalentagency.com   # Gmail / Google Workspace address
+EMAIL_PASS=xxxx xxxx xxxx xxxx         # a Gmail App Password (not your login password)
+```
+
+## Deployment (Netlify)
+
+The contact form's `/api/contact` route runs as a serverless function and reads
+`EMAIL_USER` / `EMAIL_PASS` from the **Netlify** environment — `.env.local` is
+gitignored and never deployed. If these aren't set, every submission fails with
+"Email service is not configured".
+
+1. Netlify → Site configuration → Environment variables → **Add a variable**
+2. Add `EMAIL_USER` and `EMAIL_PASS` with the same values as `.env.local`
+3. Scope: **All scopes** (the Functions/Runtime scope is the one that matters)
+4. Deploys → **Trigger deploy** — env var changes only apply to new deploys
+5. Verify: submit the form at `/contact` and confirm the email arrives
+
 ## Adding a Creator
 
 Edit `src/data/creators.ts`:

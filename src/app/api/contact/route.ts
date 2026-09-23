@@ -86,19 +86,30 @@ export async function POST(request: NextRequest) {
   }
 
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-    console.error('Email credentials are not configured')
+    // EMAIL_USER / EMAIL_PASS must be set in the hosting provider's runtime
+    // environment (Netlify: Site configuration → Environment variables, with the
+    // Functions scope enabled) and the site redeployed. Log the submission so it
+    // can still be recovered from the function logs instead of being lost.
+    console.error('Email credentials are not configured (EMAIL_USER / EMAIL_PASS missing)')
+    console.log('Form submission received (not delivered):', JSON.stringify({ type, data }))
     return NextResponse.json(
       { success: false, message: 'Email service is not configured. Please email mitch@forgetalentagency.com directly.' },
       { status: 500 }
     )
   }
 
+  // Gmail SMTP via an App Password. Explicit timeouts keep a hung SMTP
+  // connection from outliving the serverless function limit (10s on Netlify),
+  // so the visitor gets a clear fallback message instead of a generic failure.
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
+    connectionTimeout: 7000,
+    greetingTimeout: 7000,
+    socketTimeout: 7000,
   })
 
   const subject = type === 'creator'
