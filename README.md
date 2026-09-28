@@ -34,6 +34,7 @@ npm run dev
 ```
 EMAIL_USER=you@forgetalentagency.com   # Gmail / Google Workspace address
 EMAIL_PASS=xxxx xxxx xxxx xxxx         # a Gmail App Password (not your login password)
+CREATOR_CC_EMAILS=a@example.com,b@example.com   # optional: CC'd on creator applications
 ```
 
 ## Deployment (Netlify)
@@ -48,6 +49,10 @@ gitignored and never deployed. If these aren't set, every submission fails with
 3. Scope: **All scopes** (the Functions/Runtime scope is the one that matters)
 4. Deploys → **Trigger deploy** — env var changes only apply to new deploys
 5. Verify: submit the form at `/contact` and confirm the email arrives
+
+Optional: set `CREATOR_CC_EMAILS` (comma-separated) to CC other team members on
+every creator application. Brand inquiries go to Mitch only. Changing the list
+also needs a redeploy.
 
 ## Adding a Creator
 

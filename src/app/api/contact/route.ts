@@ -18,6 +18,24 @@ function formatMultiline(value: unknown): string {
   return escapeHtml(value).replace(/\r?\n/g, '<br>')
 }
 
+// Extra people CC'd on every creator application, as a comma-separated list in
+// CREATOR_CC_EMAILS. Kept in the hosting environment rather than in code because
+// this repo is public. Invalid entries are skipped so one typo can't make Gmail
+// reject the whole message.
+function getCreatorCc(): string[] {
+  const entries = (process.env.CREATOR_CC_EMAILS ?? '')
+    .split(',')
+    .map((entry) => entry.trim())
+    .filter(Boolean)
+
+  const invalid = entries.filter((entry) => !EMAIL_REGEX.test(entry))
+  if (invalid.length > 0) {
+    console.warn('Ignoring invalid CREATOR_CC_EMAILS entries:', invalid.join(', '))
+  }
+
+  return entries.filter((entry) => EMAIL_REGEX.test(entry))
+}
+
 type ContactType = 'creator' | 'brand'
 
 interface ContactData {
@@ -152,6 +170,7 @@ export async function POST(request: NextRequest) {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: 'mitch@forgetalentagency.com',
+      cc: type === 'creator' ? getCreatorCc() : undefined,
       subject,
       html: emailContent,
       replyTo: data.email,
