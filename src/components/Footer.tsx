@@ -54,6 +54,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/team" className="u-link text-paper/80 transition-colors hover:text-amber">
+                  Our team
+                </Link>
+              </li>
+              <li>
                 <Link href="/creators" className="u-link text-paper/80 transition-colors hover:text-amber">
                   Our creators
                 </Link>

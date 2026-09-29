@@ -12,7 +12,8 @@ const approach = [
   {
     n: '01',
     title: 'Hands-on representation',
-    blurb: 'Work directly with Mitch, the founder — no account managers, no phone trees.',
+    blurb:
+      'Every creator is assigned a dedicated manager who knows your business and handles your deals personally.',
   },
   {
     n: '02',

@@ -19,8 +19,8 @@ export interface Industry {
 // ("now scouting") that funnel to /contact. Add or reorder freely.
 export const industries: Industry[] = [
   {
-    key: 'trades-home',
-    label: 'Trades & Home',
+    key: 'plumbing-home-trades',
+    label: 'Plumbing & Home Trades',
     blurb: 'Real fixes, real know-how, millions of views.',
     chip: 'clay',
     creatorSlug: 'plumb-hero',
@@ -66,6 +66,12 @@ export const industries: Industry[] = [
     label: 'Money & Business',
     blurb: 'Straight talk that makes complicated things simple.',
     chip: 'teal',
+  },
+  {
+    key: 'electrical-hvac',
+    label: 'Electrical & HVAC',
+    blurb: 'Electricians and techs people call before anyone else.',
+    chip: 'clay',
   },
 ]
 

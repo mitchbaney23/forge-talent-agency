@@ -4,7 +4,7 @@ import { signedCreators } from '@/data/creators'
 const BASE_URL = 'https://forgetalentagency.com'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes: MetadataRoute.Sitemap = ['', '/about', '/creators', '/contact'].map(
+  const staticRoutes: MetadataRoute.Sitemap = ['', '/about', '/team', '/creators', '/contact'].map(
     (path) => ({
       url: `${BASE_URL}${path}`,
       changeFrequency: 'monthly',
